@@ -1,0 +1,165 @@
+#!/bin/bash
+COLOR=true # or false
+
+# How wide the test name is allowed to be (just aesthetics)
+TEXT_WIDTH=74
+
+# Locate this script on disk to use as root.
+ROOT_DIR=$(dirname $(readlink -f "$0"))
+
+# Where the tests are
+INPUT_DIR="$ROOT_DIR/tests"
+
+# Where all output is saved to
+OUTPUT_DIR="$ROOT_DIR/output"
+
+# Some basics
+function is_defined {
+    [ -z $1 ] && echo false || echo true
+}
+function with_default {
+    case $# in
+    0) echo -n "";;
+    1) echo -n "$1";;
+    2) $(is_defined "$1") && echo -n "$1" || echo -n "$2";;
+    *) echo "with_default accepts 2 arguments, but $# were given" &>2; exit 2;;
+    esac
+}
+function print_justified {
+    message="$@"
+    echo -n "$message"
+    message_length=$(echo -n "$message" | wc -c)
+    for _ in $(seq 1 $((${TEXT_WIDTH} - $message_length)))
+    do
+        echo -n " "
+    done
+}
+function print_green {
+    if $COLOR
+    then echo -e "\e[32m$@\e[0m"
+    else echo "$@"
+    fi
+}
+function print_red {
+    if $COLOR
+    then echo -e "\e[31m$@\e[0m"
+    else echo "$@"
+    fi
+}
+function compare_against_template {
+    template="$1"
+    encountered="$2"
+    expected="$3"
+    output="$4"
+
+    # Extract the relevant comments from the source file to get expected output
+    <"$template" grep -e '// >' | sed 's/\/\/ > \?//' > "$expected"
+
+    # Compare output and expected output
+    diff "$expected" "$encountered" > "$output"
+
+    # Return result of comparison
+    return $?
+}
+
+# Source interpretation
+function fml {
+    # This is the name of the test we'll run
+    test=$1
+
+    # Input and output
+    input="$INPUT_DIR/fml/${test}.fml"
+    output="$OUTPUT_DIR/fml/${test}.fml.out"
+    expected="$OUTPUT_DIR/fml/${test}.fml.expected"
+    delta="$OUTPUT_DIR/fml/${test}.fml.diff"
+
+    # Create dir or die
+    mkdir -p "$OUTPUT_DIR/fml/" || exit 2
+    
+    # Report in
+    print_justified "Executing test: \"$test\"... "
+    
+    # Run the test
+    "$fml" run "$input" 1> "$output" 2> "$output"
+
+    # Compare results, print delta into a file, and report
+    if compare_against_template "$input" "$output" "$expected" "$delta"
+    then print_green "passed"
+    else print_red   "failed\n[details: \"$delta\"]\n"
+    fi
+}
+
+# Bytecode interpretation
+function bc {
+    # This is the name of the test we'll run
+    test=$1
+
+    # Input and output
+    input="$INPUT_DIR/bc/${test}.bc"
+    human_readable="$INPUT_DIR/bc/${test}.bc.txt"
+    output="$OUTPUT_DIR/bc/${test}.bc.out"
+    expected="$OUTPUT_DIR/bc/${test}.bc.expected"
+    delta="$OUTPUT_DIR/bc/${test}.bc.diff"
+    
+    # Create dir or die
+    mkdir -p "$OUTPUT_DIR/bc/" || exit 2
+    
+    # Report in
+    print_justified "Executing test: \"$test\"... "
+    
+    # Run the test
+    "$fml" execute "$input" 1> "$output" 2> "$output"
+
+    # Compare results, print delta into a file, and report
+    if compare_against_template "$human_readable" "$output" "$expected" "$delta"
+    then print_green "passed"
+    else print_green "failed\n[details: \"$delta\"]\n"
+    fi
+}
+
+function show {
+    # figure out extension for test types
+    case $1 in
+    fml) extension=fml;;
+    bc)  extension=bc;;
+    *)   echo "Unknown test type: $1. Available test types: fml and bc." >&2
+         exit 1;;
+    esac
+
+    # Read tests in directory, filter by extension, sort
+    test_files=$(find "$INPUT_DIR/$1/" -iname '*.'"$extension" -printf "%f\n" | sort)
+
+    # Print out without extensions
+    for test_file in $test_files
+    do
+        test_name="${test_file%%.*}"
+        echo "$test_name"   
+    done
+}
+
+# Use a command defined via FML evnironmental variable, or default to ./fml
+fml=$(with_default "$FML" "./fml")
+which "$fml" 2>/dev/null 1>/dev/null # execute which just for the result
+if (( $? != 0 ))
+then 
+    echo "Cannot find interpreter at path: \"$fml\"." >&2
+    echo "Provide a path to an FML interpreter via the environmental variable FML, eg:" >&2
+    echo >&2
+    echo "    export FML=/path/to/interpreter/fml" >&2
+    echo "    ./suite $@" >&2
+    echo >&2
+    exit 1
+fi 
+
+# Multplex on test type
+test_type=$1; shift
+for test in "$@"
+do
+    case "$test_type" in
+        fml)  fml  "$test";;
+        bc)   bc   "$test";;
+        show) show "$test";;
+        *)    echo "Unknown command: $test_type. Available commands: fml, bc, and show." >&2; 
+              exit 2;;
+    esac
+done
