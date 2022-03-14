@@ -113,7 +113,7 @@ function bc {
     # Compare results, print delta into a file, and report
     if compare_against_template "$human_readable" "$output" "$expected" "$delta"
     then print_green "passed"
-    else print_green "failed\n[details: \"$delta\"]\n"
+    else print_red   "failed\n[details: \"$delta\"]\n"
     fi
 }
 
