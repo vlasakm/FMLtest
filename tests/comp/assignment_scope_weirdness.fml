@@ -1,0 +1,10 @@
+// > x=null
+print("x=~\n", x);
+x <- 666;
+
+// > x=666
+print("x=~\n", x);
+
+let x = 10;
+// > x=10
+print("x=~\n", x);

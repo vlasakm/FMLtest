@@ -117,13 +117,48 @@ function bc {
     fi
 }
 
+# Compilation
+function comp {
+    # This is the name of the test we'll run
+    test=$1
+
+    # Input and output
+    input="$INPUT_DIR/comp/${test}.fml"
+    ast="$OUTPUT_DIR/comp/${test}.$ast_format"   
+    compiled_bytecode="$OUTPUT_DIR/comp/${test}.bc"   
+    output="$OUTPUT_DIR/comp/${test}.out"
+    expected="$OUTPUT_DIR/comp/${test}.expected"
+    delta="$OUTPUT_DIR/comp/${test}.diff"
+
+    # Create dir or die
+    mkdir -p "$OUTPUT_DIR/comp/" || exit 2
+    
+    # Report in
+    print_justified "Executing test: \"$test\"... "
+    
+    # Run a pipeline, which each step being ocnditional on the previous step:
+    # - Parse the FML source into an AST
+    # - Compile the AST into BC
+    # - Run the compiled BC
+    "$fml_parser" parse "$input" -o "$ast" && \
+    "$fml" compile "$ast" > "$compiled_bytecode" && \
+    "$fml_ref_bc_int" execute "$compiled_bytecode" 2> "$output" 1> "$output" 
+
+    # Compare results, print delta into a file, and report
+    if (( $? == 0 )) && compare_against_template "$input" "$output" "$expected" "$delta"
+    then print_green "passed"
+    else print_red   "failed\n[details: \"$delta\"]\n"
+    fi
+}
+
 function show {
     # figure out extension for test types
     case $1 in
-    fml) extension=fml;;
-    bc)  extension=bc;;
-    *)   echo "Unknown test type: $1. Available test types: fml and bc." >&2
-         exit 1;;
+    fml)  extension=fml;;
+    bc)   extension=bc;;
+    comp) extension=fml;;
+    *)    echo "Unknown test type: $1. Available test types: fml and bc." >&2
+          exit 1;;
     esac
 
     # Read tests in directory, filter by extension, sort
@@ -133,12 +168,16 @@ function show {
     for test_file in $test_files
     do
         test_name="${test_file%%.*}"
-        echo "$test_name"   
+        echo "$test_name"
     done
 }
 
 # Use a command defined via FML evnironmental variable, or default to ./fml
 fml=$(with_default "$FML" "./fml")
+fml_ref_bc_int=$(with_default "$FML_REF_BC_INT" "$fml")
+fml_parser=$(with_default "$FML_PARSER" "$fml")
+ast_format=$(with_default "$AST_FORMAT" json)
+
 which "$fml" 2>/dev/null 1>/dev/null # execute which just for the result
 if (( $? != 0 ))
 then 
@@ -158,7 +197,8 @@ do
     case "$test_type" in
         fml)  fml  "$test";;
         bc)   bc   "$test";;
-        show) show "$test";;
+        comp) comp "$test";;
+        show) show "$test";;        
         *)    echo "Unknown command: $test_type. Available commands: fml, bc, and show." >&2; 
               exit 2;;
     esac

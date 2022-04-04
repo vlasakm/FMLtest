@@ -1,0 +1,4 @@
+// > n=null
+print("n=~\n", n);
+
+let n = 42;

@@ -1,0 +1,4 @@
+function rightmost(x, y, z) -> z;
+
+// > rightmost(1,2,3)=3
+print("rightmost(~,~,~)=~\n", 1, 2, 3, rightmost(1, 2, 3))

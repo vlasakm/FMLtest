@@ -1,0 +1,4 @@
+function f() -> null;
+
+// > f()=null
+print("f()=~\n", f())

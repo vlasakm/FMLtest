@@ -1,0 +1,4 @@
+function id(x) -> x;
+
+// > id(42)=42
+print("id(~)=~\n", 42, id(42))
