@@ -1,0 +1,7 @@
+while false
+do begin
+    print("nope\n");
+end;
+print("hello\n");
+
+// > hello

@@ -1,0 +1,27 @@
+while null
+do begin
+    print("no\n");
+end;
+print("yes\n");
+
+// > yes
+
+let c = 1;
+while c
+do begin
+    print("once");
+    c <- null;
+end;
+print(" and done\n");
+
+// > once and done
+
+let o = object begin end;
+while o
+do begin
+    print("once more");
+    o <- null;
+end;
+print(" and done again\n");
+
+// > once more and done again

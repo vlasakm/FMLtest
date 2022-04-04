@@ -1,0 +1,16 @@
+function constructor(x, y) -> object
+begin
+    let x = x;
+    let y = y;
+    let z = 3;
+end;
+
+let obj = constructor(1, 2);
+
+// > obj.x=1
+// > obj.y=2
+// > obj.z=3
+print("obj.x=~\n", obj.x);
+print("obj.y=~\n", obj.y);
+print("obj.z=~\n", obj.z);
+

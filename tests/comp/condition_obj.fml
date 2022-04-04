@@ -1,0 +1,4 @@
+// > yes
+if object begin end then print("yes\n");
+
+if null then print("also yes\n");

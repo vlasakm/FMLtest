@@ -1,0 +1,4 @@
+while y <- false do let y = true;
+
+// > y=false
+print("y=~\n", y);

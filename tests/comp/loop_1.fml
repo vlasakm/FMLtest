@@ -1,0 +1,10 @@
+let v = true;
+while v
+do begin
+    print("v=~\n", v);
+    v <- false;
+end;
+print("v=~\n", v);
+
+// > v=true
+// > v=false

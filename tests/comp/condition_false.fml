@@ -1,0 +1,2 @@
+// > yes
+if false then print("nope\n") else print("yes\n");

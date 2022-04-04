@@ -1,0 +1,17 @@
+let c = 3;
+
+function hack () -> 
+begin 
+    print("c=~\n", c);
+    c <- c - 1;
+    if c == 0 then c <- false;
+    c
+end;
+
+// > c=3
+// > c=2
+// > c=1
+while c do let z = hack();
+
+// > z=false
+print("z=~\n", z);

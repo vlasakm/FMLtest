@@ -1,0 +1,64 @@
+function triple(x, y, z) -> object
+extends     
+begin
+    let x = x;
+    let y = y;
+    let z = z;
+
+    function leftmost() -> this.x;
+    function middle() -> this.y;
+    function rightmost() -> this.z;
+    
+    function set(x,y,z) ->
+    begin
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    end;
+
+    function rotate() ->
+    begin
+        let z = this.z;
+        this.z = this.x;
+        this.x = z;
+    end;
+
+    function plus(t) -> 
+    begin
+        triple(t.x + this.x, t.y + this.x, + t.z + this.z)
+    end;
+end;
+
+
+let t1 = triple(1, 2, 3);
+let t2 = triple(2, 4, 6);
+
+// > t1=object(x=1, y=2, z=1)
+print("t1=~\n", t1);
+
+// > t2=object(x=2, y=4, z=6)
+print("t2=~\n", t2);
+
+let t3 = t1.plus(t2);
+
+// > t3=object(x=3, y=6 z=9)
+print("t3=~\n", t3);
+
+t3.set(42, 41, 40)
+
+// > t3=object(x=42, y=41, z=40)
+print("t3=~\n", t3);
+
+t3.rotate();
+
+// > t3=object(x=40, y=41, z=42)
+print("t3=~\n", t3);
+
+// > x=42
+print("x=~\n", t3.leftmost());
+
+// > y=41
+print("y=~\n", t3.middle());
+
+// > z=40
+print("z=~\n", t3.rightmost());
