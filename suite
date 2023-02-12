@@ -27,12 +27,7 @@ function with_default {
 }
 function print_justified {
     message="$@"
-    echo -n "$message"
-    message_length=$(echo -n "$message" | wc -c)
-    for _ in $(seq 1 $((${TEXT_WIDTH} - $message_length)))
-    do
-        echo -n " "
-    done
+    printf "%-${TEXT_WIDTH}s" "$message"
 }
 function print_green {
     if $COLOR
