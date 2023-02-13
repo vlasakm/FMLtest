@@ -1,4 +1,5 @@
 #!/bin/bash
+
 COLOR=true # or false
 
 # How wide the test name is allowed to be (just aesthetics)
@@ -13,6 +14,11 @@ INPUT_DIR="$ROOT_DIR/tests"
 # Where all output is saved to
 OUTPUT_DIR="$ROOT_DIR/output"
 
+function die {
+	echo "$0: error: $@" >&2
+	exit 1
+}
+
 # Some basics
 function is_defined {
     [ -z $1 ] && echo false || echo true
@@ -22,7 +28,7 @@ function with_default {
     0) echo -n "";;
     1) echo -n "$1";;
     2) $(is_defined "$1") && echo -n "$1" || echo -n "$2";;
-    *) echo "with_default accepts 2 arguments, but $# were given" &>2; exit 2;;
+    *) die "with_default accepts 2 arguments, but $# were given" ;;
     esac
 }
 function print_justified {
@@ -57,113 +63,83 @@ function compare_against_template {
     return $?
 }
 
-# Source interpretation
-function fml {
-    # This is the name of the test we'll run
-    test=$1
-
-    # Input and output
-    input="$INPUT_DIR/fml/${test}.fml"
-    output="$OUTPUT_DIR/fml/${test}.fml.out"
-    expected="$OUTPUT_DIR/fml/${test}.fml.expected"
-    delta="$OUTPUT_DIR/fml/${test}.fml.diff"
-
-    # Create dir or die
-    mkdir -p "$OUTPUT_DIR/fml/" || exit 2
-    
-    # Report in
-    print_justified "Executing test: \"$test\"... "
-    
-    # Run the test
-    "$fml" run "$input" 1> "$output" 2> "$output"
-
-    # Compare results, print delta into a file, and report
-    if compare_against_template "$input" "$output" "$expected" "$delta"
-    then print_green "passed"
-    else print_red   "failed\n[details: \"$delta\"]\n"
-    fi
+function ast_interpret {
+    "$fml" run "$input" 1> "$output" 2>/dev/null
 }
 
-# Bytecode interpretation
-function bc {
-    # This is the name of the test we'll run
-    test=$1
-
-    # Input and output
-    input="$INPUT_DIR/bc/${test}.bc"
-    human_readable="$INPUT_DIR/bc/${test}.bc.txt"
-    output="$OUTPUT_DIR/bc/${test}.bc.out"
-    expected="$OUTPUT_DIR/bc/${test}.bc.expected"
-    delta="$OUTPUT_DIR/bc/${test}.bc.diff"
-    
-    # Create dir or die
-    mkdir -p "$OUTPUT_DIR/bc/" || exit 2
-    
-    # Report in
-    print_justified "Executing test: \"$test\"... "
-    
-    # Run the test
-    "$fml" execute "$input" 1> "$output" 2> "$output"
-
-    # Compare results, print delta into a file, and report
-    if compare_against_template "$human_readable" "$output" "$expected" "$delta"
-    then print_green "passed"
-    else print_red   "failed\n[details: \"$delta\"]\n"
-    fi
+function bc_interpret {
+    template="$in.bc.txt"
+    "$fml" execute "$input" > "$output" 2>/dev/null
 }
 
-# Compilation
-function comp {
-    # This is the name of the test we'll run
-    test=$1
+function bc_compile {
+    ast="$out.ast.json"
+    compiled_bytecode="$out.bc"
 
-    # Input and output
-    input="$INPUT_DIR/comp/${test}.fml"
-    ast="$OUTPUT_DIR/comp/${test}.$ast_format"   
-    compiled_bytecode="$OUTPUT_DIR/comp/${test}.bc"   
-    output="$OUTPUT_DIR/comp/${test}.out"
-    expected="$OUTPUT_DIR/comp/${test}.expected"
-    delta="$OUTPUT_DIR/comp/${test}.diff"
-
-    # Create dir or die
-    mkdir -p "$OUTPUT_DIR/comp/" || exit 2
-    
-    # Report in
-    print_justified "Executing test: \"$test\"... "
-    
-    # Run a pipeline, which each step being ocnditional on the previous step:
-    # - Parse the FML source into an AST
-    # - Compile the AST into BC
-    # - Run the compiled BC
     "$fml_parser" parse "$input" -o "$ast" && \
     "$fml" compile "$ast" > "$compiled_bytecode" && \
-    "$fml_ref_bc_int" execute "$compiled_bytecode" 2> "$output" 1> "$output" 
+    "$fml_ref_bc_int" execute "$compiled_bytecode" 2>/dev/null 1> "$output"
+}
+
+function run_test {
+    format=$1 # "fml" or "bc"
+    type=$2   # e.g. "run_ast"
+    test=$3   # e.g. "arrays"
+
+    # Create dir or die
+    mkdir -p "$OUTPUT_DIR/$type/" || die "failed to create output dir"
+
+    in="$INPUT_DIR/$format/$test"
+    out="$OUTPUT_DIR/$type/$test"
+    input="$in.$format"
+    output="$out.out"
+    expected="$out.expected"
+    delta="$out.diff"
+    template="$input"
+
+    [[ -r "$input" ]] || die "Can't read '$input'"
+
+    # Report in
+    print_justified "Executing $type test: \"$test\"... "
+
+    # Run the test function
+    "$type"
+    exit_code=$?
 
     # Compare results, print delta into a file, and report
-    if (( $? == 0 )) && compare_against_template "$input" "$output" "$expected" "$delta"
+    if (( $exit_code == 0 )) && compare_against_template "$template" "$output" "$expected" "$delta"
     then print_green "passed"
-    else print_red   "failed\n[details: \"$delta\"]\n"
+    else print_red   "failed\n[exit code $exit_code, details: \"$delta\"]\n"
     fi
+}
+
+function get_extension {
+    case "$1" in
+        ast_interpret) extension=fml ;;
+        bc_interpret) extension=bc ;;
+        bc_compile) extension=fml ;;
+        *) die "Unknown test type '$1'. Available test types: ast_interpret, bc_interpret, bc_compile." ;;
+    esac
 }
 
 function show {
-    # figure out extension for test types
-    case $1 in
-    fml)  extension=fml;;
-    bc)   extension=bc;;
-    comp) extension=fml;;
-    *)    echo "Unknown test type: $1. Available test types: fml and bc." >&2
-          exit 1;;
-    esac
-
+    extension="$1"
     # Read tests in directory, filter by extension, sort
-    test_files=$(find "$INPUT_DIR/$1/" -iname '*.'"$extension" -printf "%f\n" | sort)
+    test_files=$(find "$INPUT_DIR/$extension/" -iname '*.'"$extension" -printf "%f\n" | sort)
 
     # Print out without extensions
     for test_file in $test_files
     do
         test_name="${test_file%%.*}"
         echo "$test_name"
+    done
+}
+
+function run_tests {
+    type="$1"
+    get_extension "$type"
+    show "$extension" | while read -r test; do
+        run_test "$extension" "$type" "$test"
     done
 }
 
@@ -175,7 +151,7 @@ ast_format=$(with_default "$AST_FORMAT" json)
 
 which "$fml" 2>/dev/null 1>/dev/null # execute which just for the result
 if (( $? != 0 ))
-then 
+then
     echo "Cannot find interpreter at path: \"$fml\"." >&2
     echo "Provide a path to an FML interpreter via the environmental variable FML, eg:" >&2
     echo >&2
@@ -183,18 +159,27 @@ then
     echo "    ./suite $@" >&2
     echo >&2
     exit 1
-fi 
+fi
 
-# Multplex on test type
-test_type=$1; shift
-for test in "$@"
-do
-    case "$test_type" in
-        fml)  fml  "$test";;
-        bc)   bc   "$test";;
-        comp) comp "$test";;
-        show) show "$test";;        
-        *)    echo "Unknown command: $test_type. Available commands: fml, bc, and show." >&2; 
-              exit 2;;
-    esac
-done
+test_type=$1
+shift
+
+case "$test_type" in
+show)
+    show "$1"
+    ;;
+all)
+    for suite in ast_interpret bc_interpret bc_compile; do
+        run_tests "$suite"
+    done
+    ;;
+*)
+    # Verify test type and get extension ("bc" or "fml")
+    get_extension "$test_type"
+
+    for test in "$@"
+    do
+        run_test "$extension" "$test_type" "$test"
+    done
+    ;;
+esac
