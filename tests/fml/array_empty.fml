@@ -1,0 +1,4 @@
+let i = null;
+array(0, i <- 1);
+// > null
+print("~\n", i);

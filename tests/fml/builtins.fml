@@ -1,0 +1,31 @@
+// > 12
+print("~\n", 5 + 7);
+// > -2
+print("~\n", 5 - 7);
+// > 35
+print("~\n", 5 * 7);
+// > 0
+print("~\n", 5 / 7);
+// > 5
+print("~\n", 5 % 7);
+// > true
+print("~\n", 5 <= 7);
+// > false
+print("~\n", 5 >= 7);
+// > true
+print("~\n", 5 < 7);
+// > false
+print("~\n", 5 > 7);
+// > false
+print("~\n", 5 == 7);
+// > true
+print("~\n", 5 != 7);
+
+// > false
+print("~\n", true & false);
+// > true
+print("~\n", true | false);
+// > false
+print("~\n", true == false);
+// > true
+print("~\n", true != false);

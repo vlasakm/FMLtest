@@ -1,0 +1,16 @@
+// From Filip Dolník, https://github.com/kondziu/FML/issues/1
+
+let obj = object begin end;
+
+// No method == on object()
+//print("~\n", obj == null);
+// > false
+print("~\n", null == obj);
+
+// From Martin Taibr, https://github.com/kondziu/FML/issues/1
+
+let i = object extends 5 begin end;
+// > true
+print("~\n", i == 5);
+// > false
+print("~\n", 5 == i);

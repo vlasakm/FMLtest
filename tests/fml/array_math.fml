@@ -1,0 +1,22 @@
+function math_array(len, value) ->
+    object extends array(len, value)
+    begin
+      let length = len;
+      function + (value) ->
+      begin
+        let i = 0;
+        let result = array(this.length, null);
+        while i < this.length do
+        begin
+          result[i] <- this[i] + value;
+          i <- i + 1;
+        end;
+        result
+      end
+    end;
+
+let arr1 = math_array(10, 5);
+let arr2 = arr1 + 1;
+arr2[0] <- 7;
+// > [7, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+print("~\n", arr2);

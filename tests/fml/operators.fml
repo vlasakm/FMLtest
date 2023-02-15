@@ -1,0 +1,4 @@
+// > true
+print("~\n", false |     2*2  +  2/2   ==  8 - 3   & true);
+// > true
+print("~\n", false | ((((2*2) + (2/2)) == (8 - 3)) & true));
