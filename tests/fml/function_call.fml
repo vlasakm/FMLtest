@@ -1,12 +1,12 @@
 function h() -> print("h\n");
 
-function f() -> 
+function f() ->
 begin
     print("f\n");
     g()
 end;
 
-function g() -> 
+function g() ->
 begin
     print("g\n");
     h()
