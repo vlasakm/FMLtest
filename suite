@@ -54,7 +54,7 @@ function compare_against_template {
     output="$4"
 
     # Extract the relevant comments from the source file to get expected output
-    <"$template" grep -e '// >' | sed 's/\/\/ > \?//' > "$expected"
+    sed -n 's/[^/]*\/\/ > \(.*\)/\1/p' "$template" > "$expected"
 
     # Compare output and expected output
     diff "$expected" "$encountered" > "$output"
