@@ -3,7 +3,7 @@ let x = 10;
 // > x=10
 print("x=~\n", x);
 
-begin    
+begin
 // > x=10
 print("x=~\n", x);
 
@@ -17,7 +17,7 @@ let x = 30;
 
 // > x=30
 print("x=~\n", x);
-end;    
+end;
 end;
 
 // > x=10

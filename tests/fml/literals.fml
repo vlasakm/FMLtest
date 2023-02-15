@@ -1,7 +1,6 @@
-// Expected output:
 // > null
-// > false true
-// > -42 -1 0 1 42
 print("~\n", null);
+// > false true
 print("~ ~\n", false, true);
+// > -42 -1 0 1 42
 print("~ ~ ~ ~ ~\n", -42, -1, 0, 1, 42);
