@@ -32,25 +32,25 @@ end;
 let t1 = triple(1, 2, 3);
 let t2 = triple(2, 4, 6);
 
-// > t1=object(x=1, y=2, z=3)
+// > t1=object(leftmost=function, middle=function, plus=function, rightmost=function, rotate=function, set=function, x=1, y=2, z=3)
 print("t1=~\n", t1);
 
-// > t2=object(x=2, y=4, z=6)
+// > t2=object(leftmost=function, middle=function, plus=function, rightmost=function, rotate=function, set=function, x=2, y=4, z=6)
 print("t2=~\n", t2);
 
 let t3 = t1.plus(t2);
 
-// > t3=object(x=3, y=6, z=9)
+// > t3=object(leftmost=function, middle=function, plus=function, rightmost=function, rotate=function, set=function, x=3, y=6, z=9)
 print("t3=~\n", t3);
 
 t3.set(42, 41, 40);
 
-// > t3=object(x=42, y=41, z=40)
+// > t3=object(leftmost=function, middle=function, plus=function, rightmost=function, rotate=function, set=function, x=42, y=41, z=40)
 print("t3=~\n", t3);
 
 t3.rotate();
 
-// > t3=object(x=40, y=41, z=42)
+// > t3=object(leftmost=function, middle=function, plus=function, rightmost=function, rotate=function, set=function, x=40, y=41, z=42)
 print("t3=~\n", t3);
 
 // > x=40

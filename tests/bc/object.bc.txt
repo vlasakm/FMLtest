@@ -66,5 +66,5 @@ Globals:
 // > object()
 // > object(x=1, y=2)
 // > object(..=object(), x=1, y=2)
-// > object()
-// > object(..=object(), x=3, y=4, z=2)
+// > object(self=function)
+// > object(..=object(), self=function, x=3, y=4, z=2)

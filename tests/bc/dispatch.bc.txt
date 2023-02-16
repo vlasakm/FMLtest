@@ -155,12 +155,12 @@ Constant Pool:
 Entry: #34
 Globals: #12="ref_cell", #21="math_cell", #17="pretty_cell"
 
-// > object(..=object(..=object(value=0)))
+// > object(..=object(..=object(!==function, ===function, get=function, set=function, value=0), +=function, increment=function), pretty_print=function)
 // > [!0]
 // > 42
 // > [!42]
 // > [!43]
 // > [!43]
 // > [!56]
-// > object(..=object(..=object(value=43))) == 43 => true
-// > object(..=object(..=object(value=43))) != 43 => false
+// > object(..=object(..=object(!==function, ===function, get=function, set=function, value=43), +=function, increment=function), pretty_print=function) == 43 => true
+// > object(..=object(..=object(!==function, ===function, get=function, set=function, value=43), +=function, increment=function), pretty_print=function) != 43 => false

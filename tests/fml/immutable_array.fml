@@ -8,5 +8,5 @@ function immutable_array(len, value) ->
 let arr = immutable_array(10, 42);
 // > Cannot set value: immutable array
 arr[0] <- 6;
-// > object(..=[42, 42, 42, 42, 42, 42, 42, 42, 42, 42])
+// > object(..=[42, 42, 42, 42, 42, 42, 42, 42, 42, 42], set=function)
 print("~\n", arr);
