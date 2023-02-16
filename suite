@@ -84,7 +84,7 @@ function bc_compile {
 function run_test {
     format=$1 # "fml" or "bc"
     type=$2   # e.g. "run_ast"
-    test=$3   # e.g. "arrays"
+    test=${3%%.*} # e.g. "arrays" or "arrays.fml" or "arrays.bc.txt"
 
     # Create dir or die
     mkdir -p "$OUTPUT_DIR/$type/" || die "failed to create output dir"
