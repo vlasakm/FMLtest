@@ -64,7 +64,7 @@ function compare_against_template {
 }
 
 function ast_interpret {
-    "$fml" run "$input" 1> "$output" 2>/dev/null
+    "$fml" run_ast "$input" 1> "$output" 2>/dev/null
 }
 
 function bc_interpret {
@@ -76,8 +76,7 @@ function bc_compile {
     ast="$out.ast.json"
     compiled_bytecode="$out.bc"
 
-    "$fml_parser" parse "$input" -o "$ast" && \
-    "$fml" compile "$ast" > "$compiled_bytecode" && \
+    "$fml" compile "$input" > "$compiled_bytecode" 2>/dev/null && \
     "$fml_ref_bc_int" execute "$compiled_bytecode" 2>/dev/null 1> "$output"
 }
 
