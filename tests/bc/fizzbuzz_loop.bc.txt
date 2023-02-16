@@ -1,0 +1,83 @@
+Constant Pool:
+    0: 1
+    1: "i"
+    2: null
+    3: 15
+    4: "<="
+    5: "~"
+    6: 3
+    7: "%"
+    8: 0
+    9: "=="
+   10: " fizz"
+   11: 5
+   12: " buzz"
+   13: "\n"
+   14: "+"
+   15: "~ not considered\n"
+   16: Function(params: 1, locals: 0, length: 133)
+                 0: constant #0=1
+                 3: set global #1="i"
+                 6: drop
+                 7: constant #2=null
+                10: get global #1="i"
+                13: constant #3=15
+                16: call method #4="<=" 2
+                20: branch +3=26
+                23: jump +98=124
+                26: drop
+                27: get global #1="i"
+                30: print #5="~" 1
+                34: drop
+                35: get global #1="i"
+                38: constant #6=3
+                41: call method #7="%" 2
+                45: constant #8=0
+                48: call method #9="==" 2
+                52: branch +3=58
+                55: jump +7=65
+                58: print #10=" fizz" 0
+                62: jump +3=68
+                65: constant #2=null
+                68: drop
+                69: get global #1="i"
+                72: constant #11=5
+                75: call method #7="%" 2
+                79: constant #8=0
+                82: call method #9="==" 2
+                86: branch +3=92
+                89: jump +7=99
+                92: print #12=" buzz" 0
+                96: jump +3=102
+                99: constant #2=null
+               102: drop
+               103: print #13="\n" 0
+               107: drop
+               108: get global #1="i"
+               111: constant #0=1
+               114: call method #14="+" 2
+               118: set global #1="i"
+               121: jump -114=10
+               124: drop
+               125: get global #1="i"
+               128: print #15="~ not considered\n" 1
+               132: return
+Entry: #16
+Globals: #1="i"
+
+// > 1
+// > 2
+// > 3 fizz
+// > 4
+// > 5 buzz
+// > 6 fizz
+// > 7
+// > 8
+// > 9 fizz
+// > 10 buzz
+// > 11
+// > 12 fizz
+// > 13
+// > 14
+// > 15 fizz buzz
+// > 16 not considered

@@ -1,0 +1,272 @@
+Constant Pool:
+    0: 0
+    1: "-"
+    2: 1
+    3: "+"
+    4: null
+    5: "<"
+    6: "set"
+    7: Function(params: 3, locals: 3, length: 101)
+                 0: constant #0=0
+                 3: set local 3
+                 6: drop
+                 7: get local 2
+                10: get local 1
+                13: call method #1="-" 2
+                17: constant #2=1
+                20: call method #3="+" 2
+                24: set local 4
+                27: drop
+                28: get local 4
+                31: constant #4=null
+                34: array
+                35: set local 5
+                38: drop
+                39: constant #4=null
+                42: get local 3
+                45: get local 4
+                48: call method #5="<" 2
+                52: branch +3=58
+                55: jump +38=96
+                58: drop
+                59: get local 5
+                62: get local 3
+                65: get local 3
+                68: get local 1
+                71: call method #3="+" 2
+                75: call method #6="set" 3
+                79: drop
+                80: get local 3
+                83: constant #2=1
+                86: call method #3="+" 2
+                90: set local 3
+                93: jump -54=42
+                96: drop
+                97: get local 5
+               100: return
+    8: "simple_sequence"
+    9: "collection"
+   10: "size"
+   11: "pointer"
+   12: Function(params: 1, locals: 0, length: 10)
+                 0: get local 0
+                 3: constant #0=0
+                 6: set field #11="pointer"
+                 9: return
+   13: "reset"
+   14: Function(params: 1, locals: 0, length: 17)
+                 0: get local 0
+                 3: get field #11="pointer"
+                 6: get local 0
+                 9: get field #10="size"
+                12: call method #5="<" 2
+                16: return
+   15: "has_next"
+   16: "get"
+   17: Function(params: 1, locals: 1, length: 63)
+                 0: get local 0
+                 3: call method #15="has_next" 1
+                 7: branch +3=13
+                10: jump +46=59
+                13: get local 0
+                16: get field #9="collection"
+                19: get local 0
+                22: get field #11="pointer"
+                25: call method #16="get" 2
+                29: set local 1
+                32: drop
+                33: get local 0
+                36: get local 0
+                39: get field #11="pointer"
+                42: constant #2=1
+                45: call method #3="+" 2
+                49: set field #11="pointer"
+                52: drop
+                53: get local 1
+                56: jump +3=62
+                59: constant #4=null
+                62: return
+   18: "next"
+   19: "apply"
+   20: Function(params: 2, locals: 0, length: 49)
+                 0: get local 0
+                 3: call method #13="reset" 1
+                 7: drop
+                 8: constant #4=null
+                11: get local 0
+                14: call method #15="has_next" 1
+                18: branch +3=24
+                21: jump +24=48
+                24: drop
+                25: get local 1
+                28: get local 0
+                31: get field #11="pointer"
+                34: get local 0
+                37: call method #18="next" 1
+                41: call method #19="apply" 3
+                45: jump -37=11
+                48: return
+   21: "for_each"
+   22: Function(params: 2, locals: 1, length: 80)
+                 0: get local 0
+                 3: call method #13="reset" 1
+                 7: drop
+                 8: get local 0
+                11: get field #10="size"
+                14: constant #4=null
+                17: array
+                18: set local 2
+                21: drop
+                22: constant #4=null
+                25: get local 0
+                28: call method #15="has_next" 1
+                32: branch +3=38
+                35: jump +37=75
+                38: drop
+                39: get local 2
+                42: get local 0
+                45: get field #11="pointer"
+                48: get local 1
+                51: get local 0
+                54: get field #11="pointer"
+                57: get local 0
+                60: call method #18="next" 1
+                64: call method #19="apply" 3
+                68: call method #6="set" 3
+                72: jump -50=25
+                75: drop
+                76: get local 2
+                79: return
+   23: "map"
+   24: Class(#9="collection", #10="size", #11="pointer", #13="reset", #15="has_next", #18="next", #21="for_each", #23="map")
+   25: Function(params: 3, locals: 0, length: 31)
+                 0: constant #4=null
+                 3: get local 1
+                 6: get local 2
+                 9: constant #0=0
+                12: function #12
+                15: function #14
+                18: function #17
+                21: function #20
+                24: function #22
+                27: object #24
+                30: return
+   26: "array_iterator"
+   27: "~: ~\n"
+   28: Function(params: 3, locals: 0, length: 11)
+                 0: get local 1
+                 3: get local 2
+                 6: print #27="~: ~\n" 2
+                10: return
+   29: Class(#19="apply")
+   30: "print_lambda"
+   31: Function(params: 3, locals: 0, length: 11)
+                 0: get local 2
+                 3: constant #2=1
+                 6: call method #3="+" 2
+                10: return
+   32: Class(#19="apply")
+   33: "increment_lambda"
+   34: 10
+   35: "collection_length"
+   36: "collection: ~\n"
+   37: "iterator"
+   38: "gimme more: ~\n"
+   39: "gimme too much: ~\n"
+   40: "incremented_collection"
+   41: "incremented collection: ~\n"
+   42: Function(params: 1, locals: 0, length: 184)
+                 0: function #7
+                 3: set global #8="simple_sequence"
+                 6: drop
+                 7: function #25
+                10: set global #26="array_iterator"
+                13: drop
+                14: constant #4=null
+                17: function #28
+                20: object #29
+                23: set global #30="print_lambda"
+                26: drop
+                27: constant #4=null
+                30: function #31
+                33: object #32
+                36: set global #33="increment_lambda"
+                39: drop
+                40: constant #34=10
+                43: set global #35="collection_length"
+                46: drop
+                47: get global #8="simple_sequence"
+                50: constant #34=10
+                53: constant #34=10
+                56: get global #35="collection_length"
+                59: call method #3="+" 2
+                63: constant #2=1
+                66: call method #1="-" 2
+                70: call function 2
+                72: set global #9="collection"
+                75: drop
+                76: get global #9="collection"
+                79: print #36="collection: ~\n" 1
+                83: drop
+                84: get global #26="array_iterator"
+                87: get global #9="collection"
+                90: get global #35="collection_length"
+                93: call function 2
+                95: set global #37="iterator"
+                98: drop
+                99: constant #4=null
+               102: get global #37="iterator"
+               105: call method #15="has_next" 1
+               109: branch +3=115
+               112: jump +15=130
+               115: drop
+               116: get global #37="iterator"
+               119: call method #18="next" 1
+               123: print #38="gimme more: ~\n" 1
+               127: jump -28=102
+               130: drop
+               131: get global #37="iterator"
+               134: call method #18="next" 1
+               138: print #39="gimme too much: ~\n" 1
+               142: drop
+               143: get global #37="iterator"
+               146: call method #13="reset" 1
+               150: drop
+               151: get global #37="iterator"
+               154: get global #30="print_lambda"
+               157: call method #21="for_each" 2
+               161: drop
+               162: get global #37="iterator"
+               165: get global #33="increment_lambda"
+               168: call method #23="map" 2
+               172: set global #40="incremented_collection"
+               175: drop
+               176: get global #40="incremented_collection"
+               179: print #41="incremented collection: ~\n" 1
+               183: return
+Entry: #42
+Globals: #8="simple_sequence", #26="array_iterator", #30="print_lambda", #33="increment_lambda", #35="collection_length", #9="collection", #37="iterator", #40="incremented_collection"
+
+// > collection: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+// > gimme more: 10
+// > gimme more: 11
+// > gimme more: 12
+// > gimme more: 13
+// > gimme more: 14
+// > gimme more: 15
+// > gimme more: 16
+// > gimme more: 17
+// > gimme more: 18
+// > gimme more: 19
+// > gimme too much: null
+// > 0: 10
+// > 1: 11
+// > 2: 12
+// > 3: 13
+// > 4: 14
+// > 5: 15
+// > 6: 16
+// > 7: 17
+// > 8: 18
+// > 9: 19
+// > incremented collection: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]

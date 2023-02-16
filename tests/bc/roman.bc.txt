@@ -1,0 +1,524 @@
+Constant Pool:
+    0: null
+    1: "decimal_value"
+    2: "roman"
+    3: "+"
+    4: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #3="+" 2
+                19: call function 1
+                21: return
+    5: "-"
+    6: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #5="-" 2
+                19: call function 1
+                21: return
+    7: "*"
+    8: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #7="*" 2
+                19: call function 1
+                21: return
+    9: "/"
+   10: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #9="/" 2
+                19: call function 1
+                21: return
+   11: "%"
+   12: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #11="%" 2
+                19: call function 1
+                21: return
+   13: "=="
+   14: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #13="==" 2
+                19: call function 1
+                21: return
+   15: "!="
+   16: Function(params: 2, locals: 0, length: 22)
+                 0: get global #2="roman"
+                 3: get local 0
+                 6: get field #1="decimal_value"
+                 9: get local 1
+                12: get field #1="decimal_value"
+                15: call method #15="!=" 2
+                19: call function 1
+                21: return
+   17: 1000
+   18: "M"
+   19: 500
+   20: "D"
+   21: 100
+   22: "C"
+   23: 50
+   24: "L"
+   25: 10
+   26: "X"
+   27: 5
+   28: "V"
+   29: 1
+   30: "I"
+   31: "Error: Unknown symbol code ~"
+   32: Function(params: 2, locals: 0, length: 169)
+                 0: get local 1
+                 3: constant #17=1000
+                 6: call method #13="==" 2
+                10: branch +3=16
+                13: jump +7=23
+                16: print #18="M" 0
+                20: jump +145=168
+                23: get local 1
+                26: constant #19=500
+                29: call method #13="==" 2
+                33: branch +3=39
+                36: jump +7=46
+                39: print #20="D" 0
+                43: jump +122=168
+                46: get local 1
+                49: constant #21=100
+                52: call method #13="==" 2
+                56: branch +3=62
+                59: jump +7=69
+                62: print #22="C" 0
+                66: jump +99=168
+                69: get local 1
+                72: constant #23=50
+                75: call method #13="==" 2
+                79: branch +3=85
+                82: jump +7=92
+                85: print #24="L" 0
+                89: jump +76=168
+                92: get local 1
+                95: constant #25=10
+                98: call method #13="==" 2
+               102: branch +3=108
+               105: jump +7=115
+               108: print #26="X" 0
+               112: jump +53=168
+               115: get local 1
+               118: constant #27=5
+               121: call method #13="==" 2
+               125: branch +3=131
+               128: jump +7=138
+               131: print #28="V" 0
+               135: jump +30=168
+               138: get local 1
+               141: constant #29=1
+               144: call method #13="==" 2
+               148: branch +3=154
+               151: jump +7=161
+               154: print #30="I" 0
+               158: jump +7=168
+               161: get local 1
+               164: print #31="Error: Unknown symbol code ~" 1
+               168: return
+   33: "__print_symbol"
+   34: 0
+   35: "<"
+   36: Function(params: 3, locals: 1, length: 55)
+                 0: constant #34=0
+                 3: set local 3
+                 6: drop
+                 7: constant #0=null
+                10: get local 3
+                13: get local 1
+                16: call method #35="<" 2
+                20: branch +3=26
+                23: jump +28=54
+                26: drop
+                27: get local 0
+                30: get local 2
+                33: call method #33="__print_symbol" 2
+                37: drop
+                38: get local 3
+                41: constant #29=1
+                44: call method #3="+" 2
+                48: set local 3
+                51: jump -44=10
+                54: return
+   37: "__print_n_symbols"
+   38: ">="
+   39: Function(params: 4, locals: 3, length: 183)
+                 0: get local 1
+                 3: set local 4
+                 6: drop
+                 7: get local 4
+                10: get local 2
+                13: call method #9="/" 2
+                17: set local 5
+                20: drop
+                21: get local 4
+                24: get local 2
+                27: call method #38=">=" 2
+                31: branch +3=37
+                34: jump +44=81
+                37: get local 4
+                40: get local 2
+                43: call method #9="/" 2
+                47: set local 6
+                50: drop
+                51: get local 0
+                54: get local 6
+                57: get local 2
+                60: call method #37="__print_n_symbols" 3
+                64: drop
+                65: get local 4
+                68: get local 2
+                71: call method #11="%" 2
+                75: set local 4
+                78: jump +3=84
+                81: constant #0=null
+                84: drop
+                85: get local 3
+                88: constant #34=0
+                91: call method #15="!=" 2
+                95: branch +3=101
+                98: jump +74=175
+               101: get local 4
+               104: get local 2
+               107: get local 3
+               110: call method #5="-" 2
+               114: call method #38=">=" 2
+               118: branch +3=124
+               121: jump +45=169
+               124: get local 0
+               127: get local 3
+               130: call method #33="__print_symbol" 2
+               134: drop
+               135: get local 0
+               138: get local 2
+               141: call method #33="__print_symbol" 2
+               145: drop
+               146: get local 4
+               149: get local 2
+               152: get local 3
+               155: call method #5="-" 2
+               159: call method #11="%" 2
+               163: set local 4
+               166: jump +3=172
+               169: constant #0=null
+               172: jump +3=178
+               175: constant #0=null
+               178: drop
+               179: get local 4
+               182: return
+   40: "__print_order_of_magnitude"
+   41: Function(params: 1, locals: 1, length: 154)
+                 0: get local 0
+                 3: get field #1="decimal_value"
+                 6: set local 1
+                 9: drop
+                10: get local 0
+                13: get local 1
+                16: constant #17=1000
+                19: constant #21=100
+                22: call method #40="__print_order_of_magnitude" 4
+                26: set local 1
+                29: drop
+                30: get local 0
+                33: get local 1
+                36: constant #19=500
+                39: constant #21=100
+                42: call method #40="__print_order_of_magnitude" 4
+                46: set local 1
+                49: drop
+                50: get local 0
+                53: get local 1
+                56: constant #21=100
+                59: constant #25=10
+                62: call method #40="__print_order_of_magnitude" 4
+                66: set local 1
+                69: drop
+                70: get local 0
+                73: get local 1
+                76: constant #23=50
+                79: constant #25=10
+                82: call method #40="__print_order_of_magnitude" 4
+                86: set local 1
+                89: drop
+                90: get local 0
+                93: get local 1
+                96: constant #25=10
+                99: constant #29=1
+               102: call method #40="__print_order_of_magnitude" 4
+               106: set local 1
+               109: drop
+               110: get local 0
+               113: get local 1
+               116: constant #27=5
+               119: constant #29=1
+               122: call method #40="__print_order_of_magnitude" 4
+               126: set local 1
+               129: drop
+               130: get local 0
+               133: get local 1
+               136: constant #29=1
+               139: constant #34=0
+               142: call method #40="__print_order_of_magnitude" 4
+               146: set local 1
+               149: drop
+               150: constant #0=null
+               153: return
+   42: "print_roman"
+   43: "~"
+   44: Function(params: 1, locals: 0, length: 11)
+                 0: get local 0
+                 3: get field #1="decimal_value"
+                 6: print #43="~" 1
+                10: return
+   45: "print_decimal"
+   46: Class(#1="decimal_value", #3="+", #5="-", #7="*", #9="/", #11="%", #13="==", #15="!=", #33="__print_symbol", #37="__print_n_symbols", #40="__print_order_of_magnitude", #42="print_roman", #45="print_decimal")
+   47: Function(params: 2, locals: 0, length: 46)
+                 0: constant #0=null
+                 3: get local 1
+                 6: function #4
+                 9: function #6
+                12: function #8
+                15: function #10
+                18: function #12
+                21: function #14
+                24: function #16
+                27: function #32
+                30: function #36
+                33: function #39
+                36: function #41
+                39: function #44
+                42: object #46
+                45: return
+   48: 17
+   49: "size"
+   50: "numbers"
+   51: "set"
+   52: 4
+   53: 2
+   54: 3
+   55: 9
+   56: 40
+   57: 6
+   58: 7
+   59: 90
+   60: 8
+   61: 400
+   62: 11
+   63: 900
+   64: 12
+   65: 13
+   66: 14
+   67: 42
+   68: 15
+   69: 666
+   70: 16
+   71: 21000
+   72: "i"
+   73: "get"
+   74: " => "
+   75: "\n"
+   76: Function(params: 1, locals: 0, length: 432)
+                 0: function #47
+                 3: set global #2="roman"
+                 6: drop
+                 7: constant #48=17
+                10: set global #49="size"
+                13: drop
+                14: get global #49="size"
+                17: constant #34=0
+                20: array
+                21: set global #50="numbers"
+                24: drop
+                25: get global #50="numbers"
+                28: constant #34=0
+                31: get global #2="roman"
+                34: constant #29=1
+                37: call function 1
+                39: call method #51="set" 3
+                43: drop
+                44: get global #50="numbers"
+                47: constant #29=1
+                50: get global #2="roman"
+                53: constant #52=4
+                56: call function 1
+                58: call method #51="set" 3
+                62: drop
+                63: get global #50="numbers"
+                66: constant #53=2
+                69: get global #2="roman"
+                72: constant #27=5
+                75: call function 1
+                77: call method #51="set" 3
+                81: drop
+                82: get global #50="numbers"
+                85: constant #54=3
+                88: get global #2="roman"
+                91: constant #55=9
+                94: call function 1
+                96: call method #51="set" 3
+               100: drop
+               101: get global #50="numbers"
+               104: constant #52=4
+               107: get global #2="roman"
+               110: constant #25=10
+               113: call function 1
+               115: call method #51="set" 3
+               119: drop
+               120: get global #50="numbers"
+               123: constant #27=5
+               126: get global #2="roman"
+               129: constant #56=40
+               132: call function 1
+               134: call method #51="set" 3
+               138: drop
+               139: get global #50="numbers"
+               142: constant #57=6
+               145: get global #2="roman"
+               148: constant #23=50
+               151: call function 1
+               153: call method #51="set" 3
+               157: drop
+               158: get global #50="numbers"
+               161: constant #58=7
+               164: get global #2="roman"
+               167: constant #59=90
+               170: call function 1
+               172: call method #51="set" 3
+               176: drop
+               177: get global #50="numbers"
+               180: constant #60=8
+               183: get global #2="roman"
+               186: constant #21=100
+               189: call function 1
+               191: call method #51="set" 3
+               195: drop
+               196: get global #50="numbers"
+               199: constant #55=9
+               202: get global #2="roman"
+               205: constant #61=400
+               208: call function 1
+               210: call method #51="set" 3
+               214: drop
+               215: get global #50="numbers"
+               218: constant #25=10
+               221: get global #2="roman"
+               224: constant #19=500
+               227: call function 1
+               229: call method #51="set" 3
+               233: drop
+               234: get global #50="numbers"
+               237: constant #62=11
+               240: get global #2="roman"
+               243: constant #63=900
+               246: call function 1
+               248: call method #51="set" 3
+               252: drop
+               253: get global #50="numbers"
+               256: constant #64=12
+               259: get global #2="roman"
+               262: constant #17=1000
+               265: call function 1
+               267: call method #51="set" 3
+               271: drop
+               272: get global #50="numbers"
+               275: constant #65=13
+               278: get global #2="roman"
+               281: constant #57=6
+               284: call function 1
+               286: call method #51="set" 3
+               290: drop
+               291: get global #50="numbers"
+               294: constant #66=14
+               297: get global #2="roman"
+               300: constant #67=42
+               303: call function 1
+               305: call method #51="set" 3
+               309: drop
+               310: get global #50="numbers"
+               313: constant #68=15
+               316: get global #2="roman"
+               319: constant #69=666
+               322: call function 1
+               324: call method #51="set" 3
+               328: drop
+               329: get global #50="numbers"
+               332: constant #70=16
+               335: get global #2="roman"
+               338: constant #71=21000
+               341: call function 1
+               343: call method #51="set" 3
+               347: drop
+               348: constant #34=0
+               351: set global #72="i"
+               354: drop
+               355: constant #0=null
+               358: get global #72="i"
+               361: get global #49="size"
+               364: call method #35="<" 2
+               368: branch +3=374
+               371: jump +57=431
+               374: drop
+               375: get global #50="numbers"
+               378: get global #72="i"
+               381: call method #73="get" 2
+               385: call method #45="print_decimal" 1
+               389: drop
+               390: print #74=" => " 0
+               394: drop
+               395: get global #50="numbers"
+               398: get global #72="i"
+               401: call method #73="get" 2
+               405: call method #42="print_roman" 1
+               409: drop
+               410: print #75="\n" 0
+               414: drop
+               415: get global #72="i"
+               418: constant #29=1
+               421: call method #3="+" 2
+               425: set global #72="i"
+               428: jump -73=358
+               431: return
+Entry: #76
+Globals: #2="roman", #49="size", #50="numbers", #72="i"
+
+// > 1 => I
+// > 4 => IV
+// > 5 => V
+// > 9 => IX
+// > 10 => X
+// > 40 => XL
+// > 50 => L
+// > 90 => XC
+// > 100 => C
+// > 400 => CD
+// > 500 => D
+// > 900 => CM
+// > 1000 => M
+// > 6 => VI
+// > 42 => XLII
+// > 666 => DCLXVI
+// > 21000 => MMMMMMMMMMMMMMMMMMMMM

@@ -1,33 +1,25 @@
 Constant Pool:
-0: "λ:"
-1: "if:consequent:0"
-2: "if:end:0"
-3: true
-4: "incorrect\n"
-5: "correct\n"
-6: "if:consequent:1"
-7: "if:end:1"
-8: false
-9: method #0 args:0 locals:0 0000-0015
-Entry: #9
-Globals:
-Code:
-0: lit #3
-1: branch #1
-2: printf #4 0
-3: drop
-4: goto #2
-5: label #1
-6: printf #5 0
-7: drop
-8: label #2
-9: lit #8
-10: branch #6
-11: printf #5 0
-12: goto #7
-13: label #6
-14: printf #4 0
-15: label #7
+    0: true
+    1: "correct\n"
+    2: "incorrect\n"
+    3: false
+    4: Function(params: 1, locals: 0, length: 42)
+                 0: constant #0=true
+                 3: branch +3=9
+                 6: jump +7=16
+                 9: print #1="correct\n" 0
+                13: jump +4=20
+                16: print #2="incorrect\n" 0
+                20: drop
+                21: constant #3=false
+                24: branch +3=30
+                27: jump +7=37
+                30: print #2="incorrect\n" 0
+                34: jump +4=41
+                37: print #1="correct\n" 0
+                41: return
+Entry: #4
+Globals: 
 
 // > correct
 // > correct

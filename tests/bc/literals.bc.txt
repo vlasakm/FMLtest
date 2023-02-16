@@ -1,0 +1,33 @@
+Constant Pool:
+    0: null
+    1: "~\n"
+    2: false
+    3: true
+    4: "~ ~\n"
+    5: -42
+    6: -1
+    7: 0
+    8: 1
+    9: 42
+   10: "~ ~ ~ ~ ~\n"
+   11: Function(params: 1, locals: 0, length: 39)
+                 0: constant #0=null
+                 3: print #1="~\n" 1
+                 7: drop
+                 8: constant #2=false
+                11: constant #3=true
+                14: print #4="~ ~\n" 2
+                18: drop
+                19: constant #5=-42
+                22: constant #6=-1
+                25: constant #7=0
+                28: constant #8=1
+                31: constant #9=42
+                34: print #10="~ ~ ~ ~ ~\n" 5
+                38: return
+Entry: #11
+Globals: 
+
+// > null
+// > false true
+// > -42 -1 0 1 42

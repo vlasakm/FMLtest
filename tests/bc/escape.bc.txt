@@ -1,0 +1,35 @@
+Constant Pool:
+    0: 1
+    1: 2
+    2: "~\~~\n"
+    3: 3
+    4: 4
+    5: "~\\~\n"
+    6: 5
+    7: "\"~\"\n"
+    8: 6
+    9: 7
+   10: "~\t~\n"
+   11: Function(params: 1, locals: 0, length: 41)
+                 0: constant #0=1
+                 3: constant #1=2
+                 6: print #2="~\~~\n" 2
+                10: drop
+                11: constant #3=3
+                14: constant #4=4
+                17: print #5="~\\~\n" 2
+                21: drop
+                22: constant #6=5
+                25: print #7="\"~\"\n" 1
+                29: drop
+                30: constant #8=6
+                33: constant #9=7
+                36: print #10="~\t~\n" 2
+                40: return
+Entry: #11
+Globals: 
+
+// > 1~2
+// > 3\4
+// > "5"
+// > 6	7

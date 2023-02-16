@@ -1,54 +1,50 @@
 Constant Pool:
-0: "λ:"
-1: 1
-2: "x"
-3: slot #2
-4: 2
-5: "y"
-6: slot #5
-7: 3
-8: "z"
-9: slot #8
-10: 5
-11: "x=~\n"
-12: "y=~\n"
-13: "z=~\n"
-14: "f"
-15: method #14 args:1 locals:1 0000-0011
-16: "~\n"
-17: 4
-18: method #0 args:0 locals:0 0012-0023
-Entry: #18
-Globals:
-0: #3
-1: #6
-2: #9
-3: #15
-Code:
-0: lit #10
-1: set local ::1
-2: drop
-3: get global #2
-4: printf #11 1
-5: drop
-6: get local ::0
-7: printf #12 1
-8: drop
-9: get local ::1
-10: printf #13 1
-11: return
-12: lit #1
-13: set global #2
-14: drop
-15: lit #4
-16: set global #5
-17: drop
-18: lit #7
-19: set global #8
-20: drop
-21: lit #17
-22: call #14 1
-23: printf #16 1
+    0: 1
+    1: "x"
+    2: 2
+    3: "y"
+    4: 3
+    5: "z"
+    6: 5
+    7: "x=~\n"
+    8: "y=~\n"
+    9: "z=~\n"
+   10: Function(params: 2, locals: 1, length: 31)
+                 0: constant #6=5
+                 3: set local 2
+                 6: drop
+                 7: get global #1="x"
+                10: print #7="x=~\n" 1
+                14: drop
+                15: get local 1
+                18: print #8="y=~\n" 1
+                22: drop
+                23: get local 2
+                26: print #9="z=~\n" 1
+                30: return
+   11: "f"
+   12: 4
+   13: "~\n"
+   14: Function(params: 1, locals: 0, length: 41)
+                 0: constant #0=1
+                 3: set global #1="x"
+                 6: drop
+                 7: constant #2=2
+                10: set global #3="y"
+                13: drop
+                14: constant #4=3
+                17: set global #5="z"
+                20: drop
+                21: function #10
+                24: set global #11="f"
+                27: drop
+                28: get global #11="f"
+                31: constant #12=4
+                34: call function 1
+                36: print #13="~\n" 1
+                40: return
+Entry: #14
+Globals: #1="x", #3="y", #5="z", #11="f"
 
 // > x=1
 // > y=4

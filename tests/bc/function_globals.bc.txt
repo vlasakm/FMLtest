@@ -1,0 +1,45 @@
+Constant Pool:
+    0: null
+    1: "d"
+    2: 5
+    3: Function(params: 1, locals: 1, length: 7)
+                 0: constant #2=5
+                 3: set local 1
+                 6: return
+    4: "f"
+    5: 1
+    6: "a"
+    7: 2
+    8: "b"
+    9: 3
+   10: "c"
+   11: "~ ~ ~ ~\n"
+   12: Function(params: 1, locals: 0, length: 58)
+                 0: constant #0=null
+                 3: set global #1="d"
+                 6: drop
+                 7: function #3
+                10: set global #4="f"
+                13: drop
+                14: constant #5=1
+                17: set global #6="a"
+                20: drop
+                21: constant #7=2
+                24: set global #8="b"
+                27: drop
+                28: constant #9=3
+                31: set global #10="c"
+                34: drop
+                35: get global #6="a"
+                38: get global #8="b"
+                41: get global #10="c"
+                44: get global #1="d"
+                47: print #11="~ ~ ~ ~\n" 4
+                51: drop
+                52: get global #4="f"
+                55: call function 0
+                57: return
+Entry: #12
+Globals: #1="d", #4="f", #6="a", #8="b", #10="c"
+
+// > 1 2 3 null

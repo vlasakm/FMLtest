@@ -1,144 +1,159 @@
 Constant Pool:
-0: "λ:"
-1: null
-2: "value"
-3: slot #2
-4: "set"
-5: method #4 args:2 locals:0 0000-0003
-6: "get"
-7: method #6 args:1 locals:0 0004-0006
-8: "=="
-9: method #8 args:2 locals:0 0007-0011
-10: "!="
-11: method #10 args:2 locals:0 0012-0016
-12: class #3,#5,#7,#9,#11
-13: "ref_cell"
-14: method #13 args:1 locals:0 0017-0020
-15: "+"
-16: 1
-17: "increment"
-18: method #17 args:1 locals:0 0021-0027
-19: "pretty_cell"
-20: method #15 args:2 locals:0 0028-0033
-21: class #18,#20
-22: "math_cell"
-23: method #22 args:1 locals:0 0034-0037
-24: "[!~]\n"
-25: "pretty_print"
-26: method #25 args:1 locals:0 0038-0041
-27: class #26
-28: method #19 args:1 locals:0 0042-0045
-29: 0
-30: "~\n"
-31: 42
-32: 13
-33: "~ == ~ => ~\n"
-34: 43
-35: "~ != ~ => ~\n"
-36: method #0 args:0 locals:2 0046-0096
-Entry: #36
-Globals:
-0: #14
-1: #23
-2: #28
-Code:
-0: get local ::0
-1: get local ::1
-2: set slot #2
-3: return
-4: get local ::0
-5: get slot #2
-6: return
-7: get local ::0
-8: get slot #2
-9: get local ::1
-10: call slot #8 2
-11: return
-12: get local ::0
-13: get slot #2
-14: get local ::1
-15: call slot #10 2
-16: return
-17: lit #1
-18: get local ::0
-19: object #12
-20: return
-21: get local ::0
-22: get local ::0
-23: call slot #6 1
-24: lit #16
-25: call slot #15 2
-26: call slot #4 2
-27: return
-28: get local ::0
-29: call slot #6 1
-30: get local ::1
-31: call slot #15 2
-32: call #19 1
-33: return
-34: get local ::0
-35: call #13 1
-36: object #21
-37: return
-38: get local ::0
-39: call slot #6 1
-40: printf #24 1
-41: return
-42: get local ::0
-43: call #22 1
-44: object #27
-45: return
-46: lit #29
-47: call #19 1
-48: set local ::0
-49: drop
-50: get local ::0
-51: printf #30 1
-52: drop
-53: get local ::0
-54: call slot #25 1
-55: drop
-56: get local ::0
-57: lit #31
-58: call slot #4 2
-59: drop
-60: get local ::0
-61: call slot #6 1
-62: printf #30 1
-63: drop
-64: get local ::0
-65: call slot #25 1
-66: drop
-67: get local ::0
-68: call slot #17 1
-69: drop
-70: get local ::0
-71: call slot #25 1
-72: drop
-73: get local ::0
-74: lit #32
-75: call slot #15 2
-76: set local ::1
-77: drop
-78: get local ::0
-79: call slot #25 1
-80: drop
-81: get local ::1
-82: call slot #25 1
-83: drop
-84: get local ::0
-85: lit #32
-86: get local ::0
-87: lit #34
-88: call slot #8 2
-89: printf #33 3
-90: drop
-91: get local ::0
-92: lit #32
-93: get local ::0
-94: lit #34
-95: call slot #10 2
-96: printf #35 3
+    0: null
+    1: "value"
+    2: Function(params: 2, locals: 0, length: 10)
+                 0: get local 0
+                 3: get local 1
+                 6: set field #1="value"
+                 9: return
+    3: "set"
+    4: Function(params: 1, locals: 0, length: 7)
+                 0: get local 0
+                 3: get field #1="value"
+                 6: return
+    5: "get"
+    6: "=="
+    7: Function(params: 2, locals: 0, length: 14)
+                 0: get local 0
+                 3: get field #1="value"
+                 6: get local 1
+                 9: call method #6="==" 2
+                13: return
+    8: "!="
+    9: Function(params: 2, locals: 0, length: 14)
+                 0: get local 0
+                 3: get field #1="value"
+                 6: get local 1
+                 9: call method #8="!=" 2
+                13: return
+   10: Class(#1="value", #3="set", #5="get", #6="==", #8="!=")
+   11: Function(params: 2, locals: 0, length: 22)
+                 0: constant #0=null
+                 3: get local 1
+                 6: function #2
+                 9: function #4
+                12: function #7
+                15: function #9
+                18: object #10
+                21: return
+   12: "ref_cell"
+   13: 1
+   14: "+"
+   15: Function(params: 1, locals: 0, length: 22)
+                 0: get local 0
+                 3: get local 0
+                 6: call method #5="get" 1
+                10: constant #13=1
+                13: call method #14="+" 2
+                17: call method #3="set" 2
+                21: return
+   16: "increment"
+   17: "pretty_cell"
+   18: Function(params: 2, locals: 0, length: 20)
+                 0: get global #17="pretty_cell"
+                 3: get local 0
+                 6: call method #5="get" 1
+                10: get local 1
+                13: call method #14="+" 2
+                17: call function 1
+                19: return
+   19: Class(#16="increment", #14="+")
+   20: Function(params: 2, locals: 0, length: 18)
+                 0: get global #12="ref_cell"
+                 3: get local 1
+                 6: call function 1
+                 8: function #15
+                11: function #18
+                14: object #19
+                17: return
+   21: "math_cell"
+   22: "[!~]\n"
+   23: Function(params: 1, locals: 0, length: 12)
+                 0: get local 0
+                 3: call method #5="get" 1
+                 7: print #22="[!~]\n" 1
+                11: return
+   24: "pretty_print"
+   25: Class(#24="pretty_print")
+   26: Function(params: 2, locals: 0, length: 15)
+                 0: get global #21="math_cell"
+                 3: get local 1
+                 6: call function 1
+                 8: function #23
+                11: object #25
+                14: return
+   27: 0
+   28: "~\n"
+   29: 42
+   30: 13
+   31: 43
+   32: "~ == ~ => ~\n"
+   33: "~ != ~ => ~\n"
+   34: Function(params: 1, locals: 2, length: 168)
+                 0: function #11
+                 3: set global #12="ref_cell"
+                 6: drop
+                 7: function #20
+                10: set global #21="math_cell"
+                13: drop
+                14: function #26
+                17: set global #17="pretty_cell"
+                20: drop
+                21: get global #17="pretty_cell"
+                24: constant #27=0
+                27: call function 1
+                29: set local 1
+                32: drop
+                33: get local 1
+                36: print #28="~\n" 1
+                40: drop
+                41: get local 1
+                44: call method #24="pretty_print" 1
+                48: drop
+                49: get local 1
+                52: constant #29=42
+                55: call method #3="set" 2
+                59: drop
+                60: get local 1
+                63: call method #5="get" 1
+                67: print #28="~\n" 1
+                71: drop
+                72: get local 1
+                75: call method #24="pretty_print" 1
+                79: drop
+                80: get local 1
+                83: call method #16="increment" 1
+                87: drop
+                88: get local 1
+                91: call method #24="pretty_print" 1
+                95: drop
+                96: get local 1
+                99: constant #30=13
+               102: call method #14="+" 2
+               106: set local 2
+               109: drop
+               110: get local 1
+               113: call method #24="pretty_print" 1
+               117: drop
+               118: get local 2
+               121: call method #24="pretty_print" 1
+               125: drop
+               126: get local 1
+               129: constant #31=43
+               132: get local 1
+               135: constant #31=43
+               138: call method #6="==" 2
+               142: print #32="~ == ~ => ~\n" 3
+               146: drop
+               147: get local 1
+               150: constant #31=43
+               153: get local 1
+               156: constant #31=43
+               159: call method #8="!=" 2
+               163: print #33="~ != ~ => ~\n" 3
+               167: return
+Entry: #34
+Globals: #12="ref_cell", #21="math_cell", #17="pretty_cell"
 
 // > object(..=object(..=object(value=0)))
 // > [!0]
@@ -147,5 +162,5 @@ Code:
 // > [!43]
 // > [!43]
 // > [!56]
-// > object(..=object(..=object(value=43))) == 13 => true
-// > object(..=object(..=object(value=43))) != 13 => false
+// > object(..=object(..=object(value=43))) == 43 => true
+// > object(..=object(..=object(value=43))) != 43 => false
