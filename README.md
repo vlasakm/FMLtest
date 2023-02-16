@@ -2,7 +2,9 @@
 
 A simple test framework and suite of blackbox correctness tests for implementations of FML interpreters and bytecode interpreters.
 
-There are three types of tests: **source interpretation**, **bytecode interpretation**, and **bytecode compilation**. 
+There are two types of test files: **fml** (FML source files) and **bc** (FML bytecode files).
+
+There are three types of tests: **source interpretation**, **bytecode interpretation**, and **bytecode compilation**.
 
 Source interpretation tests provide FML source code, which is interpreted by the provided interpreter (using the `run` command). The output of the interpreter is collected and compared against expected output (injected in the comments of the source code).
 
@@ -16,28 +18,28 @@ In order to use the test suite, one should specify the location of the interpret
 
 ```bash
 export FML=/path/to/interpreter/fml
-./suite fml hello_world
+./suite ast_interpret hello_world
 ```
 
 Alternatively, for one-time use:
 
 ```bash
-FML=/path/to/interpreter/fml ./suite fml hello_world
-FML=/path/to/elsewhere/fml ./suite fml hello_world
+FML=/path/to/interpreter/fml ./suite ast_interpret hello_world
+FML=/path/to/elsewhere/fml ./suite ast_interpret hello_world
 ```
 
-The test suite will call the interpreter using either the `run` or `execute` command. The former is used to do source interpretation from an `.fml` file, while the latter is used to do bytecode interpretation.
+The test suite will call the interpreter using either the `run`, `compile` or `execute` command. The former is used to do source interpretation from an `.fml` file, while the latter is used to do bytecode interpretation.
 
 For example, given `FML=/path/to/interpreter/fml`, the following commands will run the following interpreter commands:
 
 ```bash
-./suite fml hello_world
-# /path/to/interpreter/fml run tests/fml/hello_world.fml 
+./suite ast_interpret hello_world
+# /path/to/interpreter/fml run tests/fml/hello_world.fml
 ```
 
 ```bash
-./suite bc hello_world
-# /path/to/interpreter/fml execute tests/bc/hello_world.bc 
+./suite bc_interpret hello_world
+# /path/to/interpreter/fml execute tests/bc/hello_world.bc
 ```
 
 Compilation tests are additionally configurable in terms of what parser and AST format to use by setting the environmental variables `AST_FORMAT` and `FML PARSER`:
@@ -60,7 +62,7 @@ Compilation tests can also use a specific bytecode interpreter by setting `FML_R
 If the reference interpreter is configured as `FML_REF_BC_INT=/path/to/interpreter/fml` the following command is executed to run some compiled bytecode file:
 
 ```bash
-/path/to/interpreter/fml execute 
+/path/to/interpreter/fml execute compiler_output.bc
 ```
 
 
@@ -70,27 +72,27 @@ If the reference interpreter is configured as `FML_REF_BC_INT=/path/to/interpret
 To list all available source code tests:
 
 ```bash
-./fml show fml 
+./suite show fml
 ```
 
 Similarly, for bytecode tests:
 
 ```bash
-./fml show bc
+./suite show bc
 ```
 
-## Executing source interpreter tests
+## Executing tests
 
 Run a single source interpreter test:
 
 ```bash
-./suite fml hello_world
+./suite ast_interpret hello_world
 ```
 
 Multiple tests can be specified:
 
 ```bash
-./suite fml hello_world roman fibonacci
+./suite ast_interpret hello_world roman fibonacci
 ```
 
 ## Executing bytecode interpreter tests
@@ -98,13 +100,13 @@ Multiple tests can be specified:
 A single bytecode interpreter test:
 
 ```bash
-./suite bc hello_world
+./suite bc_interpret hello_world
 ```
 
 Analogously, multiple tests:
 
 ```bash
-./suite bc hello_world push_pop
+./suite bc_interpret hello_world push_pop
 ```
 
 ## Executing bytecode compilation tests
@@ -120,24 +122,36 @@ FML_REF_BC_INT=/path/to/interpreter/fml
 A single bytecode compiler test:
 
 ```bash
-./suite comp hello_world
+./suite bc_compile hello_world
 ```
 
 Analogously, multiple tests:
 ```bash
-./suite comp hello_world variable_scope
+./suite bc_compile hello_world variable_scope
 ```
 
 ## Executing all available tests (in bash)
 
-With the source interpreter:
+Ast interpreter tests:
 
 ```bash
-./suite fml $(./suite show fml)
+./suite ast_interpret $(./suite show fml)
 ```
 
-With the bytecode interpreter:
+Bytecode interpreter tests:
 
 ```bash
-./suite bc $(./suite show bc)
+./suite bc_interpret $(./suite show bc)
+```
+
+Bytecode compiler tests:
+
+```bash
+./suite bc_compile $(./suite show fml)
+```
+
+All tests (equivalent to all above):
+
+```bash
+./suite all
 ```
