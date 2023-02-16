@@ -1,0 +1,15 @@
+function f() -> 1;
+begin
+  function f() -> 2;
+// > 2
+  print("~\n", f());
+  begin
+    function f() -> 3;
+// > 3
+    print("~\n", f());
+  end;
+// > 2
+  print("~\n", f());
+end;
+// > 1
+print("~\n", f());

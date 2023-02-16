@@ -1,0 +1,14 @@
+let f = function() -> null != this;
+let g = function() -> if this then true else false;
+
+let a = object           begin let f=f; let g=g; end;
+let b = object extends 1 begin let f=f; let g=g; end;
+
+a.f();
+
+// > false false
+print("~ ~\n", f(), g());
+// > true true
+print("~ ~\n", a.f(), a.g());
+// > true true
+print("~ ~\n", b.f(), b.g());
