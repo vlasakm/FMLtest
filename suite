@@ -17,6 +17,9 @@ INPUT_DIR="$ROOT_DIR/tests"
 # Where all output is saved to
 OUTPUT_DIR="$ROOT_DIR/output"
 
+# Exit code for this program (succesfull for now)
+EXIT_CODE=0
+
 function die {
 	echo "$0: error: $@" >&2
 	exit 1
@@ -112,6 +115,7 @@ function run_test {
     if (( $exit_code == 0 )) && compare_against_template "$template" "$output" "$expected" "$delta"
     then print_green "passed"
     else print_red   "failed\n[exit code $exit_code, details: \"$delta\"]\n"
+         EXIT_CODE=1
     fi
 }
 
@@ -182,3 +186,5 @@ all)
     done
     ;;
 esac
+
+exit "$EXIT_CODE"
