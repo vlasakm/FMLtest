@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Make empty globs not expand to the glob string
+shopt -s nullglob
+
 COLOR=true # or false
 
 # How wide the test name is allowed to be (just aesthetics)
@@ -121,23 +124,19 @@ function get_extension {
     esac
 }
 
-function show {
+function get_tests {
     extension="$1"
-    # Read tests in directory, filter by extension, sort
-    test_files=$(find "$INPUT_DIR/$extension/" -iname '*.'"$extension" -printf "%f\n" | sort)
-
-    # Print out without extensions
-    for test_file in $test_files
-    do
-        test_name="${test_file%%.*}"
-        echo "$test_name"
-    done
+    # Read tests in directory with glob into array
+    tests=("$INPUT_DIR/$extension/"*".$extension")
+    tests=("${tests[@]%.$extension}") # remove extension
+    tests=("${tests[@]##*/}") # remove leading path
 }
 
 function run_tests {
     type="$1"
     get_extension "$type"
-    show "$extension" | while read -r test; do
+    get_tests "$extension"
+    for test in "${tests[@]}"; do
         run_test "$extension" "$type" "$test"
     done
 }
@@ -165,7 +164,8 @@ shift
 
 case "$test_type" in
 show)
-    show "$1"
+    get_tests "$1"
+    printf '%s\n' "${tests[@]}"
     ;;
 all)
     for suite in ast_interpret bc_interpret bc_compile; do
