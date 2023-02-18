@@ -1,0 +1,117 @@
+function cell(v, meta) -> object
+begin
+    let meta = meta;
+    let v = v;
+
+    function +(c) ->
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v + c.v, this.meta)
+    end;
+
+    function -(c) ->
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v - c.v, this.meta)
+    end;
+
+    function *(c) ->
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v * c.v, this.meta)
+    end;
+
+    function /(c) ->
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v / c.v, this.meta)
+    end;
+
+    function |(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v | c.v, this.meta)
+    end;
+
+    function &(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v & c.v, this.meta)
+    end;
+
+    function ==(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v == c.v, this.meta)
+    end;
+
+    function !=(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v != c.v, this.meta)
+    end;
+
+    function >(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v > c.v, this.meta)
+    end;
+
+    function <(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v < c.v, this.meta)
+    end;
+
+    function >=(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v >= c.v, this.meta)
+    end;
+
+    function <=(c) -> 
+    begin
+        this.meta <- this.meta + 1;
+        c.meta <- c.meta + 1;
+        cell(this.v <= c.v, this.meta)
+    end;
+end;
+
+let c1 = cell(42, 0);
+let c2 = cell(6, 1);
+
+// > +:  object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=1, v=48, |=function)
+// > -:  object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=2, v=36, |=function)
+// > *:  object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=3, v=252, |=function)
+// > /:  object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=4, v=7, |=function)
+
+// > ==: object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=5, v=false, |=function)
+// > !=: object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=6, v=true, |=function)
+// > >:  object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=7, v=true, |=function)
+// > <:  object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=8, v=false, |=function)
+// > >=: object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=9, v=true, |=function)
+// > <=: object(!==function, &=function, *=function, +=function, -=function, /=function, <=function, <==function, ===function, >=function, >==function, meta=10, v=false, |=function)
+
+print("+:  ~\n", c1 + c2);
+print("-:  ~\n", c1 - c2);
+print("*:  ~\n", c1 * c2);
+print("/:  ~\n", c1 / c2);
+
+print("==: ~\n", c1 == c2);
+print("!=: ~\n", c1 != c2);
+
+print(">:  ~\n", c1 > c2);
+print("<:  ~\n", c1 < c2);
+print(">=: ~\n", c1 >= c2);
+print("<=: ~\n", c1 <= c2);

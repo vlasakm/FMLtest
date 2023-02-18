@@ -1,0 +1,14 @@
+let a = 2;
+let b = 3;
+let c = 4;
+begin
+  let c = 5;
+// > 2 3 5 null
+  print("~ ~ ~ ~\n", a, b, c, d);
+  d <- 6;
+// > 2 3 5 6
+  print("~ ~ ~ ~\n", a, b, c, d);
+end;
+let d = 7;
+// > 2 3 4 7
+print("~ ~ ~ ~\n", a, b, c, d);

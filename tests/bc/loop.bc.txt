@@ -1,21 +1,20 @@
 Constant Pool:
-0: "λ:"
-1: "loop:body:0"
-2: "loop:condition:0"
-3: "nothing\n"
-4: false
-5: "something\n"
-6: method #0 args:0 locals:0 0000-0007
-Entry: #6
-Globals:
-Code:
-0: goto #2
-1: label #1
-2: printf #3 0
-3: drop
-4: label #2
-5: lit #4
-6: branch #1
-7: printf #5 0
+    0: null
+    1: false
+    2: "nothing\n"
+    3: "something\n"
+    4: Function(params: 1, locals: 0, length: 26)
+                 0: constant #0=null
+                 3: constant #1=false
+                 6: branch +3=12
+                 9: jump +8=20
+                12: drop
+                13: print #2="nothing\n" 0
+                17: jump -17=3
+                20: drop
+                21: print #3="something\n" 0
+                25: return
+Entry: #4
+Globals: 
 
 // > something

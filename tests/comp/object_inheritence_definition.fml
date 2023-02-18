@@ -1,5 +1,0 @@
-let obj1 = object extends null begin end;
-let obj2 = object extends true begin end;
-let obj3 = object extends 1 begin end;
-let obj4 = object extends object begin let x = 1 end begin end;
-let obj5 = object extends obj4 begin end;

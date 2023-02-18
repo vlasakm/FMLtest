@@ -1,0 +1,10 @@
+let o = object begin
+	function f() -> 1 +
+	(function g() -> 2)();
+end;
+
+// > o.f() = 3
+print("o.f() = ~\n", o.f());
+
+// > o = object(f=function)
+print("o = ~\n", o);

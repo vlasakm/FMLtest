@@ -1,4 +1,0 @@
-function left(x, y) -> x;
-
-// > left(true,false)=true
-print("left(~,~)=~\n", true, false, left(true, false))

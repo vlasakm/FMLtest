@@ -1,0 +1,35 @@
+let objf = object extends 1 begin
+    let v = 0;
+    function f() -> 
+    begin
+        print("f: ~\n", this.v)
+    end;
+end;
+
+let objg = object extends objf begin
+    let v = 666;
+    function g() ->
+    begin
+        print("g: ~\n", this.v)
+    end;
+end;
+
+let objh = object extends objg begin
+    let v = 42;
+    function h() ->
+    begin
+        print("h: ~\n", this.v)
+    end;
+end;
+
+// > h: 42
+objh.h();
+
+// > g: 666
+objh.g();
+
+// > f: 0
+objh.f();
+
+// > 2
+print("~\n", objh + 1);

@@ -1,0 +1,26 @@
+begin
+
+let a = null;
+let x = null;
+let y = null;
+
+// > a = null, x = null, y = null
+print("a = ~, x = ~, y = ~\n", a, x, y);
+
+let i = 0;
+let a = array(
+    let x = 3,
+    let x = begin
+         let y = i <- i + 1;
+// > a = null, x = 3, y = 1
+// > a = null, x = 3, y = 2
+// > a = null, x = 3, y = 3
+	 print("a = ~, x = ~, y = ~\n", a, x, y);
+	 let i = y + y
+    end
+);
+
+// > a = [2, 4, 6], x = 3, y = null
+print("a = ~, x = ~, y = ~\n", a, x, y);
+
+end

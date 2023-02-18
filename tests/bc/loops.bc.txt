@@ -1,0 +1,16 @@
+Constant Pool:
+    0: null
+    1: false
+    2: "nothing"
+    3: Function(params: 1, locals: 0, length: 21)
+                 0: constant #0=null
+                 3: constant #1=false
+                 6: branch +3=12
+                 9: jump +8=20
+                12: drop
+                13: print #2="nothing" 0
+                17: jump -17=3
+                20: return
+Entry: #3
+Globals: 
+

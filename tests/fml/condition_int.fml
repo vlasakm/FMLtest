@@ -1,0 +1,8 @@
+// > yes
+if 1 then print("yes\n");
+
+// > also yes
+if 0 then print("also yes\n");
+
+// > also also yes
+if -1 then print("also also yes\n");

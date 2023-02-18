@@ -1,10 +1,9 @@
 Constant Pool:
-0: "λ:"
-1: "Hello world!\n"
-2: method #0 args:0 locals:0 0000-0000
-Entry: #2
-Globals:
-Code:
-0: printf #1 0
+    0: "Hello world!\n"
+    1: Function(params: 1, locals: 0, length: 5)
+                 0: print #0="Hello world!\n" 0
+                 4: return
+Entry: #1
+Globals: 
 
 // > Hello world!

@@ -1,0 +1,24 @@
+let x = 10;
+
+// > x=10
+print("x=~\n", x);
+
+begin
+// > x=10
+print("x=~\n", x);
+
+let x = 20;
+
+// > x=20
+print("x=~\n", x);
+
+begin
+let x = 30;
+
+// > x=30
+print("x=~\n", x);
+end;
+end;
+
+// > x=10
+print("x=~\n", x);

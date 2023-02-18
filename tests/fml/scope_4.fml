@@ -1,0 +1,21 @@
+// From Václav Málek, 2021-03-06
+
+let x = 1;
+function new() ->
+  object
+  begin
+    function p() -> print("~\n", x);
+  end;
+x <- 2;
+begin
+    let x = 3;
+    let obj1 = new();
+    x <- 4;
+// > 2
+    obj1.p();
+    x <- 5;
+    let obj2 = object begin function p() -> print("~\n", x); end;
+    x <- 6;
+// > 2
+    obj2.p();
+end;

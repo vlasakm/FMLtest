@@ -1,5 +1,0 @@
-let c = 0;
-function seq() -> c <- c + 1;
-let a = array(5, seq());
-// > [1, 2, 3, 4, 5]
-print("~\n", a);

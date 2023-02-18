@@ -1,0 +1,7 @@
+function conditional(cond, f, g) -> print("~\n", if cond then f() else g());
+
+// > 1
+conditional(true, function() -> 1, function() -> -1);
+
+// > function
+print("~\n", conditional);

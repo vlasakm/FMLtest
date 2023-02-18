@@ -1,0 +1,26 @@
+let x = 66;
+let y = 55;
+let z = 2;
+
+function f(x) -> begin
+    let y = 5;
+    begin
+        let z = 4;
+        print("f.x=~\n", x);
+        print("f.y=~\n", y);
+        print("f.z=~\n", z);
+        begin 
+            let z = 3;
+            print("f.z'=~\n", z);
+        end;
+    end;
+    print("f.z''=~\n", z);
+end;
+
+// > f.x=6
+// > f.y=5
+// > f.z=4
+// > f.z'=3
+// > f.z''=2
+
+f(6);

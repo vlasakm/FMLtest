@@ -1,0 +1,88 @@
+Constant Pool:
+    0: "<="
+    1: "~"
+    2: 3
+    3: "%"
+    4: 0
+    5: "=="
+    6: " fizz"
+    7: null
+    8: 5
+    9: " buzz"
+   10: "\n"
+   11: "fizzbuzz"
+   12: 1
+   13: "+"
+   14: "~ not considered\n"
+   15: Function(params: 3, locals: 0, length: 126)
+                 0: get local 1
+                 3: get local 2
+                 6: call method #0="<=" 2
+                10: branch +3=16
+                13: jump +102=118
+                16: get local 1
+                19: print #1="~" 1
+                23: drop
+                24: get local 1
+                27: constant #2=3
+                30: call method #3="%" 2
+                34: constant #4=0
+                37: call method #5="==" 2
+                41: branch +3=47
+                44: jump +7=54
+                47: print #6=" fizz" 0
+                51: jump +3=57
+                54: constant #7=null
+                57: drop
+                58: get local 1
+                61: constant #8=5
+                64: call method #3="%" 2
+                68: constant #4=0
+                71: call method #5="==" 2
+                75: branch +3=81
+                78: jump +7=88
+                81: print #9=" buzz" 0
+                85: jump +3=91
+                88: constant #7=null
+                91: drop
+                92: print #10="\n" 0
+                96: drop
+                97: get global #11="fizzbuzz"
+               100: get local 1
+               103: constant #12=1
+               106: call method #13="+" 2
+               110: get local 2
+               113: call function 2
+               115: jump +7=125
+               118: get local 1
+               121: print #14="~ not considered\n" 1
+               125: return
+   16: 15
+   17: Function(params: 1, locals: 0, length: 19)
+                 0: function #15
+                 3: set global #11="fizzbuzz"
+                 6: drop
+                 7: get global #11="fizzbuzz"
+                10: constant #12=1
+                13: constant #16=15
+                16: call function 2
+                18: return
+Entry: #17
+Globals: #11="fizzbuzz"
+
+// > 1
+// > 2
+// > 3 fizz
+// > 4
+// > 5 buzz
+// > 6 fizz
+// > 7
+// > 8
+// > 9 fizz
+// > 10 buzz
+// > 11
+// > 12 fizz
+// > 13
+// > 14
+// > 15 fizz buzz
+// > 16 not considered

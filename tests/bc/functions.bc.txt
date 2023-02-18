@@ -1,0 +1,109 @@
+Constant Pool:
+    0: Function(params: 3, locals: 0, length: 4)
+                 0: get local 1
+                 3: return
+    1: "left"
+    2: Function(params: 3, locals: 0, length: 4)
+                 0: get local 2
+                 3: return
+    3: "right"
+    4: null
+    5: Function(params: 3, locals: 0, length: 4)
+                 0: constant #4=null
+                 3: return
+    6: "neither"
+    7: true
+    8: false
+    9: "left(true, false)    = ~\n"
+   10: "right(true, false)   = ~\n"
+   11: "neither(true, false) = ~\n"
+   12: 1
+   13: "x"
+   14: 2
+   15: "y"
+   16: 3
+   17: "z"
+   18: "scope inside: x=~, y=~, z=~\n"
+   19: 4
+   20: 5
+   21: Function(params: 3, locals: 0, length: 28)
+                 0: get local 1
+                 3: get local 2
+                 6: get global #17="z"
+                 9: print #18="scope inside: x=~, y=~, z=~\n" 3
+                13: drop
+                14: constant #19=4
+                17: set local 2
+                20: drop
+                21: constant #20=5
+                24: set global #17="z"
+                27: return
+   22: "my_scope"
+   23: "scope before: x=~, y=~, z=~\n"
+   24: 6
+   25: 7
+   26: "scope after:  x=~, y=~, z=~\n"
+   27: Function(params: 1, locals: 0, length: 137)
+                 0: function #0
+                 3: set global #1="left"
+                 6: drop
+                 7: function #2
+                10: set global #3="right"
+                13: drop
+                14: function #5
+                17: set global #6="neither"
+                20: drop
+                21: get global #1="left"
+                24: constant #7=true
+                27: constant #8=false
+                30: call function 2
+                32: print #9="left(true, false)    = ~\n" 1
+                36: drop
+                37: get global #3="right"
+                40: constant #7=true
+                43: constant #8=false
+                46: call function 2
+                48: print #10="right(true, false)   = ~\n" 1
+                52: drop
+                53: get global #6="neither"
+                56: constant #7=true
+                59: constant #8=false
+                62: call function 2
+                64: print #11="neither(true, false) = ~\n" 1
+                68: drop
+                69: constant #12=1
+                72: set global #13="x"
+                75: drop
+                76: constant #14=2
+                79: set global #15="y"
+                82: drop
+                83: constant #16=3
+                86: set global #17="z"
+                89: drop
+                90: function #21
+                93: set global #22="my_scope"
+                96: drop
+                97: get global #13="x"
+               100: get global #15="y"
+               103: get global #17="z"
+               106: print #23="scope before: x=~, y=~, z=~\n" 3
+               110: drop
+               111: get global #22="my_scope"
+               114: constant #24=6
+               117: constant #25=7
+               120: call function 2
+               122: drop
+               123: get global #13="x"
+               126: get global #15="y"
+               129: get global #17="z"
+               132: print #26="scope after:  x=~, y=~, z=~\n" 3
+               136: return
+Entry: #27
+Globals: #1="left", #3="right", #6="neither", #13="x", #15="y", #17="z", #22="my_scope"
+
+// > left(true, false)    = true
+// > right(true, false)   = false
+// > neither(true, false) = null
+// > scope before: x=1, y=2, z=3
+// > scope inside: x=6, y=7, z=3
+// > scope after:  x=1, y=2, z=5

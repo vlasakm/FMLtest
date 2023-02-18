@@ -1,0 +1,17 @@
+let c = 1;
+
+function f(a, b) -> a + b + c;
+
+// > 4
+print("~\n", f(1, 2));
+// > 3
+print("~\n", f(c, c));
+// > 6
+print("~\n", f(let b = c <- 2, c));
+begin
+// > 7
+	print("~\n", f(b, begin let c = 3; end));
+	let c = 4;
+// > 10
+	print("~\n", f(c, c))
+end;

@@ -1,0 +1,9 @@
+// From Martin Taibr, https://github.com/kondziu/FML/issues/9
+
+// > [2, 2, 2, 2, 2]
+let a1 = array(5, 1+1);
+print("~\n", a1);
+
+// > [4, 4, 4, 4, 4, 4]
+let a2 = array(6, 2+2);
+print("~\n", a2);

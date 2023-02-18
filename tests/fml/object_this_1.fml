@@ -1,0 +1,10 @@
+function printer() -> print("~\n", this);
+
+let obj = object begin let printer = printer; end;
+
+// > null
+printer();
+// > object(printer=function)
+obj.printer();
+// > object(printer=function)
+(obj.printer)();

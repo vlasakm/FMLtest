@@ -1,83 +1,64 @@
 Constant Pool:
-0: "λ:"
-1: null
-2: 3
-3: "a"
-4: slot #3
-5: 2
-6: "b"
-7: slot #6
-8: 1
-9: "c"
-10: slot #9
-11: class #4,#7,#10
-12: "~\n"
-13: "obj.a=~\n"
-14: "obj.b=~\n"
-15: "obj.c=~\n"
-16: 42
-17: 13
-18: 666
-19: method #0 args:0 locals:1 0000-0047
-Entry: #19
-Globals:
-Code:
-0: lit #1
-1: lit #2
-2: lit #5
-3: lit #8
-4: object #11
-5: set local ::0
-6: drop
-7: get local ::0
-8: printf #12 1
-9: drop
-10: get local ::0
-11: get slot #3
-12: printf #13 1
-13: drop
-14: get local ::0
-15: get slot #6
-16: printf #14 1
-17: drop
-18: get local ::0
-19: get slot #9
-20: printf #15 1
-21: drop
-22: get local ::0
-23: lit #16
-24: set slot #3
-25: printf #13 1
-26: drop
-27: get local ::0
-28: lit #17
-29: set slot #6
-30: printf #14 1
-31: drop
-32: get local ::0
-33: lit #18
-34: set slot #9
-35: printf #15 1
-36: drop
-37: get local ::0
-38: get slot #3
-39: printf #13 1
-40: drop
-41: get local ::0
-42: get slot #6
-43: printf #14 1
-44: drop
-45: get local ::0
-46: get slot #9
-47: printf #15 1
+    0: null
+    1: 3
+    2: "a"
+    3: 2
+    4: "b"
+    5: 1
+    6: "c"
+    7: Class(#2="a", #4="b", #6="c")
+    8: "~\n"
+    9: "obj.a=~\n"
+   10: "obj.b=~\n"
+   11: "obj.c=~\n"
+   12: 42
+   13: 13
+   14: 666
+   15: Function(params: 1, locals: 1, length: 102)
+                 0: constant #0=null
+                 3: constant #1=3
+                 6: constant #3=2
+                 9: constant #5=1
+                12: object #7
+                15: set local 1
+                18: drop
+                19: get local 1
+                22: print #8="~\n" 1
+                26: drop
+                27: get local 1
+                30: get field #2="a"
+                33: print #9="obj.a=~\n" 1
+                37: drop
+                38: get local 1
+                41: get field #4="b"
+                44: print #10="obj.b=~\n" 1
+                48: drop
+                49: get local 1
+                52: get field #6="c"
+                55: print #11="obj.c=~\n" 1
+                59: drop
+                60: get local 1
+                63: constant #12=42
+                66: set field #2="a"
+                69: print #9="obj.a=~\n" 1
+                73: drop
+                74: get local 1
+                77: constant #13=13
+                80: set field #4="b"
+                83: print #10="obj.b=~\n" 1
+                87: drop
+                88: get local 1
+                91: constant #14=666
+                94: set field #6="c"
+                97: print #11="obj.c=~\n" 1
+               101: return
+Entry: #15
+Globals: 
 
 // > object(a=3, b=2, c=1)
 // > obj.a=3
 // > obj.b=2
 // > obj.c=1
-// > obj.a=42
-// > obj.b=13
-// > obj.c=666
 // > obj.a=42
 // > obj.b=13
 // > obj.c=666

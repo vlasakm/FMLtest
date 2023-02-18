@@ -1,0 +1,4 @@
+// > true
+print("~\n", true);
+// > false
+print("~\n", false)

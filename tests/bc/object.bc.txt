@@ -1,69 +1,70 @@
 Constant Pool:
-0: "λ:"
-1: "~\n"
-2: null
-3: class 
-4: 1
-5: "x"
-6: slot #5
-7: 2
-8: "y"
-9: slot #8
-10: class #6,#9
-11: "self"
-12: method #11 args:1 locals:0 0000-0001
-13: class #12
-14: 3
-15: "z"
-16: slot #15
-17: method #11 args:1 locals:0 0002-0003
-18: 4
-19: class #6,#16,#17,#9
-20: method #0 args:0 locals:2 0004-0037
-Entry: #20
-Globals:
-Code:
-0: get local ::0
-1: return
-2: get local ::0
-3: return
-4: lit #2
-5: object #3
-6: printf #1 1
-7: drop
-8: lit #2
-9: lit #4
-10: lit #7
-11: object #10
-12: printf #1 1
-13: drop
-14: lit #2
-15: object #3
-16: lit #4
-17: lit #7
-18: object #10
-19: printf #1 1
-20: drop
-21: lit #2
-22: object #13
-23: set local ::0
-24: drop
-25: get local ::0
-26: printf #1 1
-27: drop
-28: lit #2
-29: object #3
-30: lit #14
-31: lit #7
-32: lit #18
-33: object #19
-34: set local ::1
-35: drop
-36: get local ::1
-37: printf #1 1
+    0: null
+    1: Class()
+    2: "~\n"
+    3: 1
+    4: "x"
+    5: 2
+    6: "y"
+    7: Class(#4="x", #6="y")
+    8: Class()
+    9: Class(#4="x", #6="y")
+   10: Function(params: 1, locals: 0, length: 4)
+                 0: get local 0
+                 3: return
+   11: "self"
+   12: Class(#11="self")
+   13: Class()
+   14: 3
+   15: "z"
+   16: Function(params: 1, locals: 0, length: 4)
+                 0: get local 0
+                 3: return
+   17: 4
+   18: Class(#4="x", #15="z", #11="self", #6="y")
+   19: Function(params: 1, locals: 2, length: 102)
+                 0: constant #0=null
+                 3: object #1
+                 6: print #2="~\n" 1
+                10: drop
+                11: constant #0=null
+                14: constant #3=1
+                17: constant #5=2
+                20: object #7
+                23: print #2="~\n" 1
+                27: drop
+                28: constant #0=null
+                31: object #8
+                34: constant #3=1
+                37: constant #5=2
+                40: object #9
+                43: print #2="~\n" 1
+                47: drop
+                48: constant #0=null
+                51: function #10
+                54: object #12
+                57: set local 1
+                60: drop
+                61: get local 1
+                64: print #2="~\n" 1
+                68: drop
+                69: constant #0=null
+                72: object #13
+                75: constant #14=3
+                78: constant #5=2
+                81: function #16
+                84: constant #17=4
+                87: object #18
+                90: set local 2
+                93: drop
+                94: get local 2
+                97: print #2="~\n" 1
+               101: return
+Entry: #19
+Globals: 
 
 // > object()
 // > object(x=1, y=2)
 // > object(..=object(), x=1, y=2)
-// > object()
-// > object(..=object(), x=3, y=4, z=2)
+// > object(self=function)
+// > object(..=object(), self=function, x=3, y=4, z=2)

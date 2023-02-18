@@ -1,0 +1,12 @@
+function immutable_array(len, value) ->
+    object extends array(len, value)
+    begin
+      function set(index, value) ->
+        print("Cannot set value: immutable array\n");
+    end;
+
+let arr = immutable_array(10, 42);
+// > Cannot set value: immutable array
+arr[0] <- 6;
+// > object(..=[42, 42, 42, 42, 42, 42, 42, 42, 42, 42], set=function)
+print("~\n", arr);

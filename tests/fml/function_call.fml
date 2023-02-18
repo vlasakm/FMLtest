@@ -1,0 +1,22 @@
+function h() -> print("h\n");
+
+function f() ->
+begin
+    print("f\n");
+    g()
+end;
+
+function g() ->
+begin
+    print("g\n");
+    h()
+end;
+
+// > g
+// > h
+g();
+
+// > f
+// > g
+// > h
+f()
