@@ -170,7 +170,7 @@ shift
 case "$test_type" in
 show)
     get_tests "$1"
-    printf '%s\n' "${tests[@]}"
+    (( ${#tests[@]} > 0 )) && printf '%s\n' "${tests[@]}"
     ;;
 all)
     for suite in ast_interpret bc_interpret bc_compile; do
