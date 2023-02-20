@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim: et sw=4
 
 # Make empty globs not expand to the glob string
 shopt -s nullglob
