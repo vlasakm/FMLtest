@@ -4,13 +4,13 @@ A simple test framework and suite of blackbox correctness tests for implementati
 
 There are two types of test files: **fml** (FML source files) and **bc** (FML bytecode files).
 
-There are three types of tests: **source interpretation**, **bytecode interpretation**, and **bytecode compilation**.
+There are three types of tests: **source AST interpretation**, **bytecode interpretation**, and **bytecode compilation**.
 
-Source interpretation tests provide FML source code, which is interpreted by the provided interpreter (using the `run` command). The output of the interpreter is collected and compared against expected output (injected in the comments of the source code).
+Source interpretation tests provide FML source code, which is interpreted by the provided interpreter (using the `ast_interpret` command of the interpreter). The output of the interpreter is collected and compared against expected output (injected in the comments of the source code).
 
-Bytecode interpretation tests provide bytecode as input. The input is executed (using the interpreter's `execute` command) and the output of the interpreter is collected. This output is compared against expected output which is injected into an accompanying text file.
+Bytecode interpretation tests provide bytecode as input. The input is executed (using the interpreter's `bc_interpret` command) and the output of the interpreter is collected. This output is compared against expected output which is injected into an accompanying text file.
 
-Bytecode compilation tests provide FML source code as input, which is parsed into an AST (using the reference parser). The AST is compiled using the compiler-under-test's `compile` command and the the bytecode file is collected. The bytecode file is then executed using a (reference) bytecode interpreter. The output of the execution is collected and compared against expected output (injected in the comments of the source code).
+Bytecode compilation tests provide FML source code as input, which is parsed into an AST (using the reference parser). The AST is compiled using the compiler-under-test's `bc_compile` command and the the bytecode file is collected. The bytecode file is then executed using a (reference) bytecode interpreter. The output of the execution is collected and compared against expected output (injected in the comments of the source code).
 
 # Usage
 
@@ -28,43 +28,35 @@ FML=/path/to/interpreter/fml ./suite ast_interpret hello_world
 FML=/path/to/elsewhere/fml ./suite ast_interpret hello_world
 ```
 
-The test suite will call the interpreter using either the `run`, `compile` or `execute` command. The former is used to do source interpretation from an `.fml` file, while the latter is used to do bytecode interpretation.
+The test suite will call the interpreter using either the `ast_interpret`, `bc_interpret` or `bc_compile` command, corresponding to the respective types of tests (source AST interpretation, bytecode interpretation, bytecode compilation).
 
 For example, given `FML=/path/to/interpreter/fml`, the following commands will run the following interpreter commands:
 
 ```bash
 ./suite ast_interpret hello_world
-# /path/to/interpreter/fml run tests/fml/hello_world.fml
+# /path/to/interpreter/fml ast_interpret tests/fml/hello_world.fml
 ```
 
 ```bash
 ./suite bc_interpret hello_world
-# /path/to/interpreter/fml execute tests/bc/hello_world.bc
+# /path/to/interpreter/fml bc_interpret tests/bc/hello_world.bc
 ```
-
-Compilation tests are additionally configurable in terms of what parser and AST format to use by setting the environmental variables `AST_FORMAT` and `FML PARSER`:
-
-For example, given the following settings:
 
 ```bash
-AST_FORMAT=json
-FML_PARSER=/path/to/parser/fml
+./suite bc_compile hello_world
+# /path/to/interpreter/fml bc_compile tests/bc/hello_world.fml > output/bc_compile/hello_world.bc
+# /path/to/interpreter/fml bc_interpret output/bc_compile/hello_world.bc
 ```
 
-The following command is executed to parse the source.
+Compilation tests can also use a specific bytecode interpreter by setting `FML_REF_BC_INT`. You usually want to set `FML_REF_BC_INT` as the reference interpreter to catch differences against the spec, but you can also test against your own interpreter (which is the default).
+
+If the reference interpreter is configured as `FML_REF_BC_INT=/path/to/reference/interpreter/fml` the following command will run the following interpreter commands:
 
 ```bash
-/path/to/parser/fml parse tests/comp/hello_world.fml -o output/comp/hello_world.json
+./suite bc_compile hello_world
+# /path/to/interpreter/fml bc_compile tests/bc/hello_world.fml > output/bc_compile/hello_world.bc
+# /path/to/reference/interpreter/fml bc_interpret output/bc_compile/hello_world.bc
 ```
-
-Compilation tests can also use a specific bytecode interpreter by setting `FML_REF_BC_INT`.
-
-If the reference interpreter is configured as `FML_REF_BC_INT=/path/to/interpreter/fml` the following command is executed to run some compiled bytecode file:
-
-```bash
-/path/to/interpreter/fml execute compiler_output.bc
-```
-
 
 
 ## Listing available tests
@@ -83,7 +75,7 @@ Similarly, for bytecode tests:
 
 ## Executing tests
 
-Run a single source interpreter test:
+Run a single AST interpreter test:
 
 ```bash
 ./suite ast_interpret hello_world
@@ -111,11 +103,9 @@ Analogously, multiple tests:
 
 ## Executing bytecode compilation tests
 
-Before executing compilation tests, configure reference parser and bytecode interpreters via environemtnal variables (if other than FML).
+Before executing compilation tests, configure reference bytecode interpreter via environemtnal variable (if other than FML):
 
 ```bash
-AST_FORMAT=json
-FML_PARSER=/path/to/parser/fml
 FML_REF_BC_INT=/path/to/interpreter/fml
 ```
 

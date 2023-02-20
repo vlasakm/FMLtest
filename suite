@@ -149,8 +149,6 @@ function run_tests {
 # Use a command defined via FML evnironmental variable, or default to ./fml
 fml=$(with_default "$FML" "./fml")
 fml_ref_bc_int=$(with_default "$FML_REF_BC_INT" "$fml")
-fml_parser=$(with_default "$FML_PARSER" "$fml")
-ast_format=$(with_default "$AST_FORMAT" json)
 
 which "$fml" 2>/dev/null 1>/dev/null # execute which just for the result
 if (( $? != 0 ))
