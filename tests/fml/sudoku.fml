@@ -289,103 +289,6 @@ begin
     board
 end;
 
-function puzzle_four() ->
-begin
-    let board = board();
-
-    board[coordinates(0, 0)] <- 9;
-    board[coordinates(0, 1)] <- 0;
-    board[coordinates(0, 2)] <- 7;
-    board[coordinates(0, 3)] <- 0;
-    board[coordinates(0, 4)] <- 5;
-    board[coordinates(0, 5)] <- 0;
-    board[coordinates(0, 6)] <- 3;
-    board[coordinates(0, 7)] <- 0;
-    board[coordinates(0, 8)] <- 0;
-
-    board[coordinates(1, 0)] <- 0;
-    board[coordinates(1, 1)] <- 0;
-    board[coordinates(1, 2)] <- 6;
-    board[coordinates(1, 3)] <- 0;
-    board[coordinates(1, 4)] <- 0;
-    board[coordinates(1, 5)] <- 3;
-    board[coordinates(1, 6)] <- 9;
-    board[coordinates(1, 7)] <- 0;
-    board[coordinates(1, 8)] <- 5;
-
-    board[coordinates(2, 0)] <- 3;
-    board[coordinates(2, 1)] <- 0;
-    board[coordinates(2, 2)] <- 1;
-    board[coordinates(2, 3)] <- 0;
-    board[coordinates(2, 4)] <- 2;
-    board[coordinates(2, 5)] <- 0;
-    board[coordinates(2, 6)] <- 0;
-    board[coordinates(2, 7)] <- 4;
-    board[coordinates(2, 8)] <- 0;
-
-    board[coordinates(3, 0)] <- 0;
-    board[coordinates(3, 1)] <- 0;
-    board[coordinates(3, 2)] <- 8;
-    board[coordinates(3, 3)] <- 5;
-    board[coordinates(3, 4)] <- 0;
-    board[coordinates(3, 5)] <- 7;
-    board[coordinates(3, 6)] <- 6;
-    board[coordinates(3, 7)] <- 0;
-    board[coordinates(3, 8)] <- 0;
-
-    board[coordinates(4, 0)] <- 6;
-    board[coordinates(4, 1)] <- 0;
-    board[coordinates(4, 2)] <- 4;
-    board[coordinates(4, 3)] <- 0;
-    board[coordinates(4, 4)] <- 9;
-    board[coordinates(4, 5)] <- 0;
-    board[coordinates(4, 6)] <- 1;
-    board[coordinates(4, 7)] <- 0;
-    board[coordinates(4, 8)] <- 7;
-
-    board[coordinates(5, 0)] <- 0;
-    board[coordinates(5, 1)] <- 9;
-    board[coordinates(5, 2)] <- 0;
-    board[coordinates(5, 3)] <- 0;
-    board[coordinates(5, 4)] <- 6;
-    board[coordinates(5, 5)] <- 0;
-    board[coordinates(5, 6)] <- 8;
-    board[coordinates(5, 7)] <- 0;
-    board[coordinates(5, 8)] <- 0;
-
-    board[coordinates(6, 0)] <- 5;
-    board[coordinates(6, 1)] <- 0;
-    board[coordinates(6, 2)] <- 9;
-    board[coordinates(6, 3)] <- 0;
-    board[coordinates(6, 4)] <- 0;
-    board[coordinates(6, 5)] <- 6;
-    board[coordinates(6, 6)] <- 0;
-    board[coordinates(6, 7)] <- 7;
-    board[coordinates(6, 8)] <- 3;
-
-    board[coordinates(7, 0)] <- 0;
-    board[coordinates(7, 1)] <- 0;
-    board[coordinates(7, 2)] <- 2;
-    board[coordinates(7, 3)] <- 0;
-    board[coordinates(7, 4)] <- 1;
-    board[coordinates(7, 5)] <- 0;
-    board[coordinates(7, 6)] <- 0;
-    board[coordinates(7, 7)] <- 0;
-    board[coordinates(7, 8)] <- 0;
-
-    board[coordinates(8, 0)] <- 8;
-    board[coordinates(8, 1)] <- 0;
-    board[coordinates(8, 2)] <- 0;
-    board[coordinates(8, 3)] <- 7;
-    board[coordinates(8, 4)] <- 4;
-    board[coordinates(8, 5)] <- 0;
-    board[coordinates(8, 6)] <- 2;
-    board[coordinates(8, 7)] <- 0;
-    board[coordinates(8, 8)] <- 9;
-
-    board
-end;
-
 function coordinates(row /*int*/, column /*int*/) -> 
 object begin
     let row = row; 
@@ -585,14 +488,13 @@ object begin
 end;
 
 begin 
-    let problems = array(4, null);
+    let problems = array(3, null);
     problems[0] <- puzzle_one();
     problems[1] <- puzzle_two();
     problems[2] <- puzzle_three();
-    problems[3] <- puzzle_four();
 
     let i = 0;
-    while i < 4 
+    while i < 3
     do begin
         print("problem ~:\n", i+1);        
         problems[i].show();
@@ -685,30 +587,4 @@ end
 // > 318|927|465
 // > 596|418|327
 // > 472|635|981
-// > 
-// > problem 4:
-// > 9 7| 5 |3  
-// >   6|  3|9 5
-// > 3 1| 2 | 4 
-// > ---+---+---
-// >   8|5 7|6  
-// > 6 4| 9 |1 7
-// >  9 | 6 |8  
-// > ---+---+---
-// > 5 9|  6| 73
-// >   2| 1 |   
-// > 8  |74 |2 9
-// > 
-// > solution 4:
-// > 987|654|321
-// > 246|173|985
-// > 351|928|746
-// > ---+---+---
-// > 128|537|694
-// > 634|892|157
-// > 795|461|832
-// > ---+---+---
-// > 519|286|473
-// > 472|319|568
-// > 863|745|219
 // > 
