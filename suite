@@ -54,37 +54,28 @@ function print_red {
     else echo "$@"
     fi
 }
-function compare_against_template {
-    template="$1"
-    encountered="$2"
-    expected="$3"
-    output="$4"
-
-    # Extract the relevant comments from the source file to get expected output
-    sed -n 's/[^/]*\/\/ > \(.*\)/\1/p' "$template" > "$expected"
-
-    # Compare output and expected output
-    diff "$expected" "$encountered" > "$output"
-
-    # Return result of comparison
-    return $?
+function print_yellow {
+    if $COLOR
+    then echo -e "\e[33m$@\e[0m"
+    else echo "$@"
+    fi
 }
 
 function ast_interpret {
-    "$fml" ast_interpret "$input" 1> "$output" 2>/dev/null
+    "$fml" ast_interpret "$input"
 }
 
 function bc_interpret {
     template="$in.bc.txt"
-    "$fml" bc_interpret "$input" > "$output" 2>/dev/null
+    "$fml" bc_interpret "$input"
 }
 
 function bc_compile {
     ast="$out.ast.json"
     compiled_bytecode="$out.bc"
 
-    "$fml" bc_compile "$input" > "$compiled_bytecode" 2>/dev/null && \
-    "$fml_ref_bc_int" bc_interpret "$compiled_bytecode" 2>/dev/null 1> "$output"
+    "$fml" bc_compile "$input" > "$compiled_bytecode" && \
+    "$fml_ref_bc_int" bc_interpret "$compiled_bytecode"
 }
 
 function run_test {
@@ -99,6 +90,7 @@ function run_test {
     out="$OUTPUT_DIR/$type/$test"
     input="$in.$format"
     output="$out.out"
+    error_output="$out.err"
     expected="$out.expected"
     delta="$out.diff"
     template="$input"
@@ -108,15 +100,31 @@ function run_test {
     # Report in
     print_justified "Executing $type test: \"$test\"... "
 
-    # Run the test function
-    "$type"
+    # Run the test capturing stdout and stderr
+    "$type" 1>"$output" 2>"$error_output"
     exit_code=$?
 
+    # Extract the relevant comments from the source file to get expected output
+    sed -n 's/[^/]*\/\/ > \(.*\)/\1/p' "$template" > "$expected"
+
+    # Compare output and expected output
+    diff -u "$expected" "$output" > "$delta"
+    diff_status=$?
+
     # Compare results, print delta into a file, and report
-    if (( $exit_code == 0 )) && compare_against_template "$template" "$output" "$expected" "$delta"
-    then print_green "passed"
-    else print_red   "failed\n[exit code $exit_code, details: \"$delta\"]\n"
-         EXIT_CODE=1
+    if (( $exit_code == 0 && $diff_status == 0 )); then
+        if [[ -s "$error_output" ]]; then
+            print_yellow "stderr"
+            print_yellow "[stderr: \"$error_output\"]"
+        else
+            print_green "passed"
+        fi
+    else
+        print_red "failed"
+        (( $exit_code != 0 )) && print_red "[exit code: $exit_code]"
+        [[ -s "$delta" ]] && print_red "[diff: \"$delta\"]"
+        [[ -s "$error_output" ]] && print_yellow "[stderr: \"$error_output\"]"
+        EXIT_CODE=1
     fi
 }
 
