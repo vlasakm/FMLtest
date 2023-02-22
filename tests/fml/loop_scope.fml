@@ -13,5 +13,5 @@ end;
 // > c=1
 while c do let z = hack();
 
-// > z=false
+// > z=null
 print("z=~\n", z);

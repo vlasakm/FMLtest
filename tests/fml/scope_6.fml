@@ -1,0 +1,10 @@
+begin
+
+let x = 1;
+
+while false do let x = 2;
+
+// > x = 1
+print("x = ~\n", x);
+
+end

@@ -1,0 +1,23 @@
+// > null
+print("~\n", a);
+a <- 1;
+// > 1
+print("~\n", a);
+let a = 2;
+// > 2
+print("~\n", a);
+let a = 3;
+// > 3
+print("~\n", a);
+begin
+    // > 3
+    print("~\n", a);
+    let a = 4;
+    // > 4
+    print("~\n", a);
+end;
+// > 3
+print("~\n", a);
+let a = 5;
+// > 5
+print("~\n", a);

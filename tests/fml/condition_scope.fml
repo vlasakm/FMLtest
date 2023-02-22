@@ -23,5 +23,5 @@ print("y=~\n", y);
 
 if let a = 1 then let b = 2 else let c = 3;
 
-// > a=1 b=2 c=null
+// > a=1 b=null c=null
 print("a=~ b=~ c=~\n", a, b, c);

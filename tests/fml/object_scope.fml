@@ -1,0 +1,8 @@
+let b = 1;
+let o = object begin
+    let a = let b = 2;
+    let c = b;
+end;
+
+// > b = 1, o = object(a=2, c=1)
+print("b = ~, o = ~\n", b, o);
